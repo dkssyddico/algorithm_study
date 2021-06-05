@@ -10,8 +10,11 @@
 
 ### [leet code](https://leetcode.com/)
 
+### [inflearn](https://www.inflearn.com/)
+
 ## Progress report
 
-|   Date   | Source   | Name              | Status     |
-| :------: | -------- | ----------------- | ---------- |
-| 21.06.03 | codewars | Disemvowel Trolls | 🎉 Done 🎉 |
+|   Date   | Source   | Name               | Status     |
+| :------: | -------- | ------------------ | ---------- |
+| 21.06.03 | codewars | Disemvowel Trolls  | 🎉 Done 🎉 |
+| 21.06.04 | codewars | Your order, please | 🎉 Done 🎉 |
