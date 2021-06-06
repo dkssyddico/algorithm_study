@@ -18,3 +18,4 @@
 | :------: | -------- | ------------------ | ---------- |
 | 21.06.03 | codewars | Disemvowel Trolls  | 🎉 Done 🎉 |
 | 21.06.04 | codewars | Your order, please | 🎉 Done 🎉 |
+| 21.06.06 | codewars | opposite number    | 🎉 Done 🎉 |

@@ -28,3 +28,31 @@ submit 하니 정규표현식으로 푸는 방법이 best practice 였다 !
 아직 정규식이 익숙하지 않다는 느낌이 든다.  
 regex 사이트에서 연습할 것 !  
 match, sort 복습
+
+---
+
+</br>
+
+## 3. Opposite number (8 kyu)
+
+### 21. 06. 06
+
+### ✏️ Note
+
+음수를 양수로 만들어주는 함수: Math.abs()
+
+```
+Math.abs(number)
+```
+
+양수를 음수로: number \* (-1)
+
+---
+
+</br>
+
+## 4. (8 kyu)
+
+### 21. 06.
+
+### ✏️ Note
