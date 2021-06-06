@@ -12,6 +12,12 @@
 
 ### [inflearn](https://www.inflearn.com/)
 
+</br>
+
+## Commit Rules
+
+- [date] quiz - status
+
 ## Progress report
 
 |   Date   | Source   | Name               | Status     |
@@ -19,3 +25,4 @@
 | 21.06.03 | codewars | Disemvowel Trolls  | 🎉 Done 🎉 |
 | 21.06.04 | codewars | Your order, please | 🎉 Done 🎉 |
 | 21.06.06 | codewars | opposite number    | 🎉 Done 🎉 |
+| 21.06.07 | inflearn | 세 수 중 최솟값    | 🎉 Done 🎉 |
