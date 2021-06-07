@@ -51,8 +51,36 @@ Math.abs(number)
 
 </br>
 
-## 4. (8 kyu)
+## 4. Keep Hydrated (8 kyu)
 
-### 21. 06.
+### 21. 06. 07
+
+### ✏️ Note
+
+```
+Math.floor()
+```
+
+다른 사람 풀이 보니까 그냥 0.5를 변수로 안넣고 바로 풀어버림.
+
+---
+
+</br>
+
+## 5. Reversed Strings (8 kyu)
+
+### 21. 06. 07
+
+### ✏️ Note
+
+array에서 reverse하기
+
+---
+
+</br>
+
+## 6. (8 kyu)
+
+### 21. 06. 0
 
 ### ✏️ Note

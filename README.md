@@ -12,11 +12,15 @@
 
 ### [inflearn](https://www.inflearn.com/)
 
+### [HackerRank](https://www.hackerrank.com/dashboard)
+
 </br>
 
 ## Commit Rules
 
 - [date] quiz - status
+
+</br>
 
 ## Progress report
 
@@ -26,3 +30,6 @@
 | 21.06.04 | codewars | Your order, please | 🎉 Done 🎉 |
 | 21.06.06 | codewars | opposite number    | 🎉 Done 🎉 |
 | 21.06.07 | inflearn | 세 수 중 최솟값    | 🎉 Done 🎉 |
+| 21.06.07 | inflearn | 삼각형 판별하기    | 🎉 Done 🎉 |
+| 21.06.07 | codewars | Keep hydrated      | 🎉 Done 🎉 |
+| 21.06.07 | codewars | Reversed Strings   | 🎉 Done 🎉 |
