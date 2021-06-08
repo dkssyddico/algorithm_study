@@ -79,7 +79,28 @@ array에서 reverse하기
 
 </br>
 
-## 6. (8 kyu)
+## 6. Counting sheep (8 kyu)
+
+### 21. 06. 0
+
+### ✏️ Note
+
+array 내 item에서 true 만 count 하는 문제  
+나는 array에서 forEach로 하나하나 true/false를 판별했는데  
+다른 사람 답을 보니
+
+```
+return arrayOfSheep.filter(Boolean).length;
+```
+
+이거 하나로 끝내버려서 감탄했다.  
+array를 응용하는 쉬운 문제였는데 forEach 보단 저렇게 filter로 한 줄로 끝내버리는 게 정말 clever !!
+
+---
+
+</br>
+
+## 7. (8 kyu)
 
 ### 21. 06. 0
 
