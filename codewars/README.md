@@ -81,7 +81,7 @@ array에서 reverse하기
 
 ## 6. Counting sheep (8 kyu)
 
-### 21. 06. 0
+### 21. 06. 08
 
 ### ✏️ Note
 
