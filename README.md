@@ -33,6 +33,7 @@
 | 21.06.07 | inflearn | 삼각형 판별하기    | 🎉 Done 🎉 |
 | 21.06.07 | codewars | Keep hydrated      | 🎉 Done 🎉 |
 | 21.06.07 | codewars | Reversed Strings   | 🎉 Done 🎉 |
-| 21.06.08 | codewars | Counting sheep  | 🎉 Done 🎉 |
-| 21.06.08 | inflearn | 연필 나눠주기   | 🎉 Done 🎉 |
-| 21.06.09 | inflearn | 1부터 N까지의 합  | 🎉 Done 🎉 |
+| 21.06.08 | codewars | Counting sheep     | 🎉 Done 🎉 |
+| 21.06.08 | inflearn | 연필 나눠주기      | 🎉 Done 🎉 |
+| 21.06.09 | inflearn | 1부터 N까지의 합   | 🎉 Done 🎉 |
+| 21.06.09 | codewars | Printer Errors     | 🎉 Done 🎉 |
