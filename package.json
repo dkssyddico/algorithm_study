@@ -1,0 +1,27 @@
+{
+  "name": "algorithm_study",
+  "version": "1.0.0",
+  "description": "물방울이 바위를 뚫듯이, 매일 매일 하나씩 풀어보기",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dkssyddico/algorithm_study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dkssyddico/algorithm_study/issues"
+  },
+  "homepage": "https://github.com/dkssyddico/algorithm_study#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "@babel/node": "^7.14.5"
+  }
+}
