@@ -24,3 +24,12 @@ function solution2(array) {
 let result = solution2(numbers);
 
 console.log('');
+
+// Teacher's solution 2
+// 내장 함수를 이용한다
+
+function solution3(array) {
+  let answer = Math.min(...array);
+  // let answer = Math.min.apply(null, array)
+  return answer;
+}
