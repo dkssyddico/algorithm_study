@@ -116,6 +116,13 @@ array 내 item 숫자들을 sort 해서 가장 적은 값이 맨 앞으로 오�
 
 ### ✏️ Note
 
+array 함수를 안까먹는 거 같아서 좋지만  
+다른 함수들도 좀 익혀보자.
+
+```
+String.prototype.replace()
+```
+
 ---
 
 </br>

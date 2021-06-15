@@ -24,20 +24,22 @@
 
 ## Progress report
 
-|   Date   | Source   | Name               | Status     |
-| :------: | -------- | ------------------ | ---------- |
-| 21.06.03 | codewars | Disemvowel Trolls  | 🎉 Done 🎉 |
-| 21.06.04 | codewars | Your order, please | 🎉 Done 🎉 |
-| 21.06.06 | codewars | opposite number    | 🎉 Done 🎉 |
-| 21.06.07 | inflearn | 세 수 중 최솟값    | 🎉 Done 🎉 |
-| 21.06.07 | inflearn | 삼각형 판별하기    | 🎉 Done 🎉 |
-| 21.06.07 | codewars | Keep hydrated      | 🎉 Done 🎉 |
-| 21.06.07 | codewars | Reversed Strings   | 🎉 Done 🎉 |
-| 21.06.08 | codewars | Counting sheep     | 🎉 Done 🎉 |
-| 21.06.08 | inflearn | 연필 나눠주기      | 🎉 Done 🎉 |
-| 21.06.09 | inflearn | 1부터 N까지의 합   | 🎉 Done 🎉 |
-| 21.06.09 | codewars | Printer Errors     | 🎉 Done 🎉 |
-| 21.06.11 | inflearn | 최소값 구하기      | 🎉 Done 🎉 |
-| 21.06.12 | inflearn | 최소값 구하기 (보충), 홀수    | 🎉 Done 🎉 |
-| 21.06.13 | inflearn | 10부제   | 🎉 Done 🎉 |
-| 21.06.14 | inflearn | 일곱난장이   | 🎉 Done 🎉 |
+|   Date   | Source   | Name                       | Status            |
+| :------: | -------- | -------------------------- | ----------------- |
+| 21.06.03 | codewars | Disemvowel Trolls          | 🎉 Done 🎉        |
+| 21.06.04 | codewars | Your order, please         | 🎉 Done 🎉        |
+| 21.06.06 | codewars | opposite number            | 🎉 Done 🎉        |
+| 21.06.07 | inflearn | 세 수 중 최솟값            | 🎉 Done 🎉        |
+| 21.06.07 | inflearn | 삼각형 판별하기            | 🎉 Done 🎉        |
+| 21.06.07 | codewars | Keep hydrated              | 🎉 Done 🎉        |
+| 21.06.07 | codewars | Reversed Strings           | 🎉 Done 🎉        |
+| 21.06.08 | codewars | Counting sheep             | 🎉 Done 🎉        |
+| 21.06.08 | inflearn | 연필 나눠주기              | 🎉 Done 🎉        |
+| 21.06.09 | inflearn | 1부터 N까지의 합           | 🎉 Done 🎉        |
+| 21.06.09 | codewars | Printer Errors             | 🎉 Done 🎉        |
+| 21.06.11 | inflearn | 최소값 구하기              | 🎉 Done 🎉        |
+| 21.06.12 | inflearn | 최소값 구하기 (보충), 홀수 | 🎉 Done 🎉        |
+| 21.06.13 | inflearn | 10부제                     | 🎉 Done 🎉        |
+| 21.06.14 | inflearn | 일곱난장이                 | 🎉 Done 🎉        |
+| 21.06.15 | codewars | Maximum subarray sum       | 👻 In progress 👻 |
+| 21.06.15 | inflearn | A를 #으로                  | 🎉 Done 🎉        |
