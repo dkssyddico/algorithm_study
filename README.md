@@ -43,3 +43,4 @@
 | 21.06.14 | inflearn | 일곱난장이                 | 🎉 Done 🎉        |
 | 21.06.15 | codewars | Maximum subarray sum       | 👻 In progress 👻 |
 | 21.06.15 | inflearn | A를 #으로                  | 🎉 Done 🎉        |
+| 21.06.15 | codewars | Which are in ?             | 🎉 Done 🎉        |
