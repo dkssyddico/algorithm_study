@@ -43,5 +43,6 @@
 | 21.06.14 | inflearn | 일곱난장이                 | 🎉 Done 🎉        |
 | 21.06.15 | codewars | Maximum subarray sum       | 👻 In progress 👻 |
 | 21.06.15 | inflearn | A를 #으로                  | 🎉 Done 🎉        |
-| 21.06.15 | codewars | Which are in ?             | 🎉 Done 🎉        |
-| 21.06.15 | inflearn | 문자 찾기                  | 🎉 Done 🎉        |
+| 21.06.16 | codewars | Which are in ?             | 🎉 Done 🎉        |
+| 21.06.16 | inflearn | 문자 찾기                  | 🎉 Done 🎉        |
+| 21.06.17 | codewars | Persistent Bugger.         | 🎉 Done 🎉        |
