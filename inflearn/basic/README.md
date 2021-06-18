@@ -141,9 +141,12 @@ String.prototype.replace()
 
 ## 11. 대문자 찾기
 
-### 21. 06. 17
+### 21. 06. 18
 
 ### ✏️ Note
+
+내 방법: 정규식 이용해서 풀기  
+선생님 방법: String.toUpperCase(), ASCII CODE로 풀기(alphabet.charCodeAt())
 
 ---
 

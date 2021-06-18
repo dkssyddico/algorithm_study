@@ -46,3 +46,4 @@
 | 21.06.16 | codewars | Which are in ?             | 🎉 Done 🎉        |
 | 21.06.16 | inflearn | 문자 찾기                  | 🎉 Done 🎉        |
 | 21.06.17 | codewars | Persistent Bugger.         | 🎉 Done 🎉        |
+| 21.06.18 | inflearn | 대문자 찾기                | 🎉 Done 🎉        |
