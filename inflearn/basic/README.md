@@ -189,3 +189,23 @@ for 문 돌려서 각 문자열의 length 비교해주기.
 ---
 
 </br>
+
+## 14. 가운데 문자 출력
+
+### 21. 06. 21
+
+### ✏️ Note
+
+`substring`이랑 `substr`의 차이  
+substring은 시작 인덱스로부터 종료 인덱스 전까지 문자열의 부분 문자열을 반환함  
+substr은 문자열의 시작 인덱스에서 시작해 특정 문자 수만큼의 문자열을 반환
+
+```js
+let str = 'dkssyddico';
+console.log(str.substring(1, 2)); // k
+console.log(str.substr(1, 2)); // ks
+```
+
+---
+
+</br>
