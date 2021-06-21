@@ -209,3 +209,22 @@ console.log(str.substr(1, 2)); // ks
 ---
 
 </br>
+
+## 14. 중복문자제거 (indexOf)
+
+### 21. 06. 21
+
+### ✏️ Note
+
+`indexOf`
+
+```js
+let str = 'dkssyddico';
+str.indexOf('d', 1);
+// 인덱스 1번 이후로 'd'를 찾아라
+// 찾는 문자가 없으면 -1 을 리턴
+```
+
+---
+
+</br>
