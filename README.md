@@ -68,3 +68,4 @@
 | 21.06.30 | inflearn | 문자열 탐색 - 숫자만 추출        | 🎉 Done 🎉        |
 | 21.07.01 | inflearn | 문자열 탐색 - 가장 짧은 문자거리 | 🎉 Done 🎉        |
 | 21.07.02 | inflearn | 문자열 탐색 - 문자열 압축        | 🎉 Done 🎉        |
+| 21.07.03 | inflearn | brute force - 자리수의 합        | 🎉 Done 🎉        |
