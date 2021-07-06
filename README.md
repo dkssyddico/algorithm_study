@@ -71,3 +71,4 @@
 | 21.07.03 | inflearn | brute force - 자리수의 합        | 🎉 Done 🎉        |
 | 21.07.04 | inflearn | brute force - 뒤집은 소수        | 🎉 Done 🎉        |
 | 21.07.05 | inflearn | brute force - 멘토링             | 🎉 Done 🎉        |
+| 21.07.06 | inflearn | brute force - 졸업선물           | 🎉 Done 🎉        |
