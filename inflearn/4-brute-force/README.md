@@ -104,6 +104,10 @@ true/false를 통해 answer 배열에 숫자를 push할지 판별한다.
 
 ### ✏️ Note
 
+중복을 제거하는 자료구조 중 `set` 이라는 것이 있다.
+[set]('https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Set')
+for 문을 돌려 set을 할당한 변수에 `add` method로 배열의 요소를 넣어주면 중복이 제거된다. 리턴값은 오브젝트.
+
 ---
 
 </br>
