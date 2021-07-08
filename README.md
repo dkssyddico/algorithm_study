@@ -73,3 +73,4 @@
 | 21.07.05 | inflearn | brute force - 멘토링             | 🎉 Done 🎉        |
 | 21.07.06 | inflearn | brute force - 졸업선물           | 🎉 Done 🎉        |
 | 21.07.07 | inflearn | brute force - K번째 큰 수        | 🎉 Done 🎉        |
+| 21.07.08 | inflearn | 효율성 - 두 배열 합치기          | 🎉 Done 🎉        |
