@@ -116,13 +116,25 @@ sum을 구해서 lt를 왼쪽부터 하나씩 빼주는거구.
 
 ## 6. 학급 회장(Hash Map)
 
-### 21. 07. 0
+### 21. 07. 12
 
 ### ✏️ Note
 
 #### 👩🏻‍💻 My solution
 
+`Map` (주의: Array method인 map과는 다르다.)
+
+[Map(mdn)]('https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+
+MDN에는 Map 만드는 방법이 있어서 이중 for문을 이용했고,
+Map에 모든 key, value가 들어갔을 때,
+다시 for문을 돌려서 제일 많은 표와 회장을 찾았다.
+
 #### 👨‍🏫 Teacher's solution
+
+`Map`을 새로 만들고 학생 문자가 있는지 확인한다. ➡️ `has`
+없으면 `set`을 이용해 key를 학생으로 하고 값은 `get`으로 가져와 + 1 해준다.
+제일 큰 값을 찾는건 내가 한 방법과 비슷 !
 
 ---
 
