@@ -133,13 +133,42 @@ stack 배열에는 괄호가 있지 않았던 애들만 남음.
 
 ## 6. 공주구하기(큐)
 
-### 21. 07.
+### 21. 07. 21
 
 ### ✏️ Note
 
 #### 👩🏻‍💻 My solution
 
+이것도 문제 자체는 이해했는데 풀이과정은 생각이 안났음
+
 #### 👨‍🏫 Teacher's solution
+
+queue도 배열을 활용해 푼다.
+
+- 주어진 숫자가 있을 때 array 만드는 방법
+
+```js
+// Generate a sequence of numbers
+// Since the array is initialized with `undefined` on each position,
+// the value of `v` below will be `undefined`
+Array.from({ length: 5 }, (v, i) => i);
+// [0, 1, 2, 3, 4]
+```
+
+그 배열에 들어있는게 없을 때까지 while문(여기까진 생각이 닿음) 돌린다.
+for문을 활용해 k를 기준으로 잡고 i를 1부터 하면 정해진 숫자(k번째)에서 빠지고 그 전 숫자들은 다시 배열에 들어갈 수 있다.
+
+```js
+while (queue.length) {
+  for (let i = 1; i < k; i++) queue.push(queue.shift());
+  queue.shift();
+  if (queue.length === 1) answer = queue.shift();
+}
+```
+
+그리고 배열의 길이가 1이라는 것은 답이란 뜻이고 while문은 length가 0이면 끝나므로(0은 false)
+그 답도 shift를 이용해 빼주고 while문을 끝낸다.
+queue는 처음에 들어오는 것이 처음에 나가므로 배열을 쓸 때는 shift를 잘 써야할 것 같다.
 
 ---
 
