@@ -163,6 +163,8 @@ slice를 쓰면 원본은 수정되지 않고 다 받아올 수 있다.
 
 ### 👩🏻‍💻 My solution
 
+sort를 써서 간단하게 풀 수 있다!
+
 ### 👨‍🏫 Teacher's solution
 
 ---
