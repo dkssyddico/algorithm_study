@@ -314,6 +314,8 @@ for문을 통해 수열을 만들어 p에 넣는다.
 
 ### 👩🏻‍💻 My solution
 
+![풀이법](img/14.jpeg)
+
 ### 👨‍🏫 Teacher's solution
 
 이제껏 푼 재귀함수의 응용이다. for 문 + 재귀함수의 조합!
