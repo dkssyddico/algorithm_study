@@ -73,6 +73,10 @@ console.log(solution(7));
 
 ### My solution 👩🏻‍💻
 
+위 문제와 크게 다르지 않음.
+다른 점은 목적지가 다르다는 것!
+1번 문제보다 한 번 더 가야된다는 것에 주의!!
+
 ### Teacher's solution 👨‍🏫
 
 ---
