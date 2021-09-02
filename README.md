@@ -130,3 +130,4 @@
 | 21.08.31 | inflearn              | 동적 프로그래밍 - 최대점수 구하기             | 🎉 Done 🎉        |
 | 21.09.01 | JEJU CODING BASE CAMP | JS100 - 1~10번 문제                           | 🎉 Done 🎉        |
 | 21.09.02 | JEJU CODING BASE CAMP | JS100 - 11~20번 문제                          | 🎉 Done 🎉        |
+| 21.09.03 | JEJU CODING BASE CAMP | JS100 - 21~30번 문제                          | 🎉 Done 🎉        |
