@@ -94,3 +94,104 @@ indexOf() 메서드는 호출한 String 객체에서 주어진 값과 일치하�
 ---
 
 <br/>
+
+## 21.09.04(21~30)
+
+### 문제 31: 자바스크립트 자료형의 복잡도
+
+배열 내장함수의 시간 복잡도가 O(1)이 아닌 것은
+arr.slice(), arr.includes(5).
+push나 pop은 배열의 맨 뒤에서 한 번만 처리해주면 되는 내장함수라서 O(1)이고,
+위의 내장함수는 배열의 중간을 탐색하거나 잘라줘야해서 O(N)인 것 같다.
+
+[풀이1]('https://minhanpark.github.io/today-i-learned/javascript-big-o/')
+무언가를 실행하는데 필요한 단계수를 나타내는 게 Big O
+
+[풀이2]('https://www.inflearn.com/questions/53298')
+3번 arr.slice()에서 slice()는 지정한 start 부터 end까지 복사하여 새로운 객체를 만드는 함수이며, 입력 데이터 크기와 배열의 길이에 따라 처리 시간이 달라지기 때문에 3번의 시간복잡도는 O(n)이 됩니다.
+
+5번 arr.includes(5)에서 includes()는 배열이 특정 값을 포함하는지 확인하는 함수입니다.
+배열 arr에 5가 포함되어 있는지 검사할 때 arr[0]부터 검사하고 최악의 경우는 배열의 마지막 원소까지 검사해야 합니다. 따라서 5번의 시간복잡도 역시 O(n)이 됩니다.
+
+- O(1) : 입력 데이터에 상관없이 일정한 시간의 알고리즘. (상수 형태)
+
+- O(n) : 입력 데이터의 크기와 배열의 길이에 비례한 시간이 걸리는 알고리즘. (선형)
+
+### 문제 34: sort 구현하기
+
+원래 배열과 원래 배열을 sort 시킨 배열을 비교하는 방법도 있었다.
+
+### 문제 35: Factory 함수 활용하기
+
+보자마자 boiler-plate 의 hoc가 생각났다. 이 문제를 푸니 저것도 이해가 되는 것 같다.
+처음에 return을 왜 two로 시켜줬는지 의아했는데 이것도 하나의 실행이라고 이해하면 되는 것 같다.
+결국 one(2)(10)을 실행하는 것이라고 이해하니 쉽다.
+
+### 문제 37: 반장선거
+
+Map을 이용해 풀었음. 실제로 인프런에서도 정말 비슷한 문제가 있어서 참고했다.
+공식 답안은 아래와 같다.
+
+```js
+const array = prompt('이름을 입력해주세요.').split(' ');
+let result = {};
+let winner = '';
+
+for (let index in array) {
+  let val = array[index];
+  result[val] = result[val] === undefined ? 1 : (result[val] = result[val] + 1);
+}
+
+winner = Object.keys(result).reduce(function (a, b) {
+  return result[a] > result[b] ? a : b;
+});
+
+console.log(`${winner}(이)가 총 ${result[winner]}표로 반장이 되었습니다.`);
+```
+
+Map과 비슷하게 object를 만드는 것 같다.
+
+### 문제 38: 호준이의 아르바이트
+
+답은 구했는데 parseInt 중복으로 쓰는 경우가 너무 많았다 ㅠ
+공식 답안처럼 미리 map으로 정수화했으면 좋았을 거 같다.
+
+```js
+let count = 0;
+let arr = [];
+
+while (arr.length < 3) {
+  let n = scores.pop();
+  if (!arr.includes(n)) {
+    arr.push(n);
+  }
+  count += 1;
+}
+```
+
+어떻게 딱 3개의 점수만 남겨놓는지가 가장 큰 고민이었는데 공식 답안이 좋은 거 같아서 기록.
+
+### 문제 39: 오타수정하기
+
+공식 답안에서는 split, join으로 푸는 방법과 정규식 사용하는 방법이 있었다.
+개인적으로 정규식으로 푸는 것이 훨 코드가 간단한 거 같다!
+
+```js
+//1. 함수 사용
+const word = prompt('입력하세요.');
+
+function replaceAll(str, searchStr, replaceStr) {
+  return str.split(searchStr).join(replaceStr);
+}
+
+console.log(replaceAll(word, 'q', 'e'));
+
+//2. 정규식 사용
+const word = prompt('입력하세요.');
+
+console.log(word.replace(/q/gi, 'e'));
+```
+
+---
+
+<br/>

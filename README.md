@@ -131,3 +131,4 @@
 | 21.09.01 | JEJU CODING BASE CAMP | JS100 - 1~10번 문제                           | 🎉 Done 🎉        |
 | 21.09.02 | JEJU CODING BASE CAMP | JS100 - 11~20번 문제                          | 🎉 Done 🎉        |
 | 21.09.03 | JEJU CODING BASE CAMP | JS100 - 21~30번 문제                          | 🎉 Done 🎉        |
+| 21.09.04 | JEJU CODING BASE CAMP | JS100 - 31~40번 문제                          | 🎉 Done 🎉        |
