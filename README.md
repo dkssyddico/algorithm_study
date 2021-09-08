@@ -135,3 +135,4 @@
 | 21.09.05 | JEJU CODING BASE CAMP | JS100 - 41~50번 문제                          | 🎉 Done 🎉        |
 | 21.09.06 | JEJU CODING BASE CAMP | JS100 - 53, 54, 57, 58, 59, 60문제            | 🎉 Done 🎉        |
 | 21.09.07 | 프로그래머스          | 정렬 - H-index                                | 🎉 Done 🎉        |
+| 21.09.08 | JEJU CODING BASE CAMP | JS100 - 51~60번 문제 정리                     | 🎉 Done 🎉        |
