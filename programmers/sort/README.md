@@ -20,3 +20,46 @@
 ---
 
 <br>
+
+## 2. 가장 큰 수 (21.09.10)
+
+sort를 얼마나 응용할 수 있는지, 그리고 문자열 sort 방식에 대해서 이해해보는 문제였다.
+mdn에 나온 sort 설명을 보자.
+arr.sort([compareFunction])
+compareFunction:
+Specifies a function that defines the sort order. If omitted, the array elements are converted to strings, then sorted according to each character's Unicode code point value.
+
+firstEl
+The first element for comparison.
+
+secondEl
+The second element for comparison.
+
+If compareFunction(a, b) returns a value > than 0, sort b before a.
+(리턴하는 값이 0보다 크다면 b, a가 된다.)
+If compareFunction(a, b) returns a value < than 0, sort a before b.
+(리턴하는 값이 0보다 작다면 a, b가 된다.)
+
+단일 숫자로 sort를 하면 10, 6, 2 순으로 된다.
+문제가 요구하는 식으로 6, 2, 10을 하려면 숫자를 문자열로 만들고,
+
+```
+sort((a, b) => b + a - (a + b))
+```
+
+이런식으로 소팅한다.
+예를 들어 "106" - "610"은 음수이기 때문에 그대로 ["6", "10"]이 된다.
+"210" - "102"는 양수이기 때문에 "2"가 먼저 와서 ["6", "2", "10"]이 된다.
+이걸 join을 통해 문자열로 다시 만들어주면 된다.
+
+그리고 answer 배열이 0으로만 이뤄진 경우를 방지하기 위해 "0"을 리턴하는 코드도 만든다.
+
+### 참고
+
+- [(자바스크립트 알고리즘) 가장 큰 수 - kimyang-sun](https://kimyang-sun.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B0%80%EC%9E%A5-%ED%81%B0-%EC%88%98-kimyang-sun)
+
+- [mdn sort](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+
+---
+
+<br>
