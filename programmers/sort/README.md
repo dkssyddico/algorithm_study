@@ -54,11 +54,19 @@ sort((a, b) => b + a - (a + b))
 
 그리고 answer 배열이 0으로만 이뤄진 경우를 방지하기 위해 "0"을 리턴하는 코드도 만든다.
 
+그리고 숫자를 문자열로 바꿀 수 있는 방법이 String이나 toString()말고도 하나 더 있었다!
+숫자로 된 변수 뒤에 "", ''를 붙여주면 된다. 많이 쓰는 방법이라는 데 처음 알았당
+
 ### 참고
 
 - [(자바스크립트 알고리즘) 가장 큰 수 - kimyang-sun](https://kimyang-sun.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B0%80%EC%9E%A5-%ED%81%B0-%EC%88%98-kimyang-sun)
 
 - [mdn sort](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+
+- 숫자를 문자열로 바꾸는 방법이
+  - [참고1](https://hianna.tistory.com/491)
+  - [참고2](https://mine-it-record.tistory.com/330)
+  - [참고3](https://itmining.tistory.com/71)
 
 ---
 
