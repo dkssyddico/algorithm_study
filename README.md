@@ -148,4 +148,5 @@
 | 21.09.18 | LeetCode              | Array 3문제                                   | 🎉 Done 🎉        |
 | 21.09.19 | LeetCode              | 1. Two Sum                                    | 🎉 Done 🎉        |
 | 21.09.20 | 프로그래머스          | 완전 탐색 - 모의고사                          | 🎉 Done 🎉        |
-| 21.09.21 | 프로그래머스          | 완전 탐색 - 소수찾기                          | In progress       |
+| 21.09.21 | 프로그래머스          | 완전 탐색 - 소수찾기 (need to retry!)         | In progress       |
+| 21.09.22 | LeetCode              | 완전 탐색 - 소수찾기                          | In progress       |

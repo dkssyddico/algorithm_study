@@ -2,7 +2,10 @@
 
 ## Problems
 
-- [1. Two Sum](#two-sum)
+- [LeetCode Problems](#leetcode-problems)
+  - [Problems](#problems)
+    - [Two Sum](#two-sum)
+    - [Add Two Numbers](#add-two-numbers)
 
 <hr>
 <br>
@@ -16,6 +19,14 @@
 target 숫자와 현재 num를 빼서 나머지 숫자를 찾는 방법이다.
 Map에 아이템을 넣을 때는 순차적으로 들어간다.
 for문을 통해 차례로 더 큰 수를 찾게되면 Map에는 작은 수가 들어가기 때문에 작은 수가 배열의 index에 맞춰서 Map에도 들어가게 된다.
+
+---
+
+<br>
+
+### Add Two Numbers
+
+(21.09.22)
 
 ---
 
