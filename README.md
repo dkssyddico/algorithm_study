@@ -151,3 +151,4 @@
 | 21.09.21 | 프로그래머스          | 완전 탐색 - 소수찾기 (need to retry!)             | In progress       |
 | 21.09.22 | LeetCode              | 2. Add Two Numbers                                | In progress       |
 | 21.09.23 | LeetCode              | 3. longest substring without repeating characters | In progress       |
+| 21.09.24 | LeetCode              | 3. longest substring without repeating characters | 🎉 Done 🎉        |
