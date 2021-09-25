@@ -152,3 +152,4 @@
 | 21.09.22 | LeetCode              | 2. Add Two Numbers                                | In progress       |
 | 21.09.23 | LeetCode              | 3. longest substring without repeating characters | In progress       |
 | 21.09.24 | LeetCode              | 3. longest substring without repeating characters | 🎉 Done 🎉        |
+| 21.09.25 | 프로그래머스          | 위클리 챌린지 1주차 문제                          | 🎉 Done 🎉        |
