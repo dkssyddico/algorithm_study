@@ -155,4 +155,5 @@
 | 21.09.25 | 프로그래머스          | 위클리 챌린지 1주차 문제                          | 🎉 Done 🎉        |
 | 21.09.26 | LeetCode              | 5. Longest Palindromic Substring                  | In progress       |
 | 21.09.27 | LeetCode              | 5. Longest Palindromic Substring                  | review!           |
-| 21.09.27 | programmers           | 완전 탐색 - 카펫                                  | 🎉 Done 🎉        |
+| 21.09.28 | programmers           | 완전 탐색 - 카펫                                  | 🎉 Done 🎉        |
+| 21.09.29 | programmers           | 탐욕법 - 체육복                                   | In progress       |
