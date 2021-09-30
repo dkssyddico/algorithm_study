@@ -22,6 +22,12 @@
 
 - [date] quiz - status
 
+## 문제 풀이 방식
+
+- 문제를 풀 때 푸는 시간은 1시간으로 한다.
+- 한 시간이 지나도 못풀었을 경우 해당 알고리즘을 먼저 공부해보고, 구글링을 통해 참고해서 답을 낸다.
+- 대신 progress report 문제 status에 review라고 적어서 다시 풀 수 있도록 해둔다.
+
 </br>
 
 ## Progress report
@@ -157,3 +163,4 @@
 | 21.09.27 | LeetCode              | 5. Longest Palindromic Substring                  | review!           |
 | 21.09.28 | programmers           | 완전 탐색 - 카펫                                  | 🎉 Done 🎉        |
 | 21.09.29 | programmers           | 탐욕법 - 체육복                                   | In progress       |
+| 21.09.30 | programmers           | 탐욕법 - 체육복                                   | 🎉 Done 🎉        |
