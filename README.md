@@ -165,3 +165,4 @@
 | 21.09.29 | programmers           | 탐욕법 - 체육복                                   | In progress       |
 | 21.09.30 | programmers           | 탐욕법 - 체육복                                   | 🎉 Done 🎉        |
 | 21.10.01 | programmers           | 탐욕법 - 조이스틱                                 | In progress       |
+| 21.10.02 | programmers           | 탐욕법 - 조이스틱                                 | In progress       |
