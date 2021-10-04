@@ -168,3 +168,5 @@
 |       21.10.02       | programmers           | 탐욕법 - 조이스틱                                 | In progress       |
 |       21.10.02       | LeetCode              | Algorithm I                                       |
 | - 704. Binary Search | In progress           |
+|       21.10.03       | LeetCode              | Algorithm I                                       |
+| - 704. Binary Search | 🎉 Done 🎉            |
