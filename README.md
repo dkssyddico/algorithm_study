@@ -170,3 +170,4 @@
 | 21.10.03 | LeetCode              | Algorithm I - 704. Binary Search                  | 🎉 Done 🎉        |
 | 21.10.04 | LeetCode              | Algorithm I - 278. First Bad Version              | 🎉 Done 🎉        |
 | 21.10.04 | LeetCode              | Algorithm I - 35. Search Insert Position          | 🎉 Done 🎉        |
+| 21.10.05 | LeetCode              | Algorithm I - 977. Squares of a Sorted Array      | In progress       |
