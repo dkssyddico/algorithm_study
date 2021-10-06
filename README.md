@@ -172,3 +172,4 @@
 | 21.10.04 | LeetCode              | Algorithm I - 35. Search Insert Position          | 🎉 Done 🎉        |
 | 21.10.05 | LeetCode              | Algorithm I - 977. Squares of a Sorted Array      | In progress       |
 | 21.10.06 | LeetCode              | Algorithm I - 977. Squares of a Sorted Array      | 🎉 Done 🎉        |
+| 21.10.06 | LeetCode              | Algorithm I - 189. Rotate Array                   | review            |
