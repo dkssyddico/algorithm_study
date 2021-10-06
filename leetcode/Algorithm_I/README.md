@@ -1,6 +1,6 @@
 # LeetCode Algorithm I
 
-## Day 1
+## Day 1 Binary Search
 
 ### 704. Binary Search
 
@@ -34,8 +34,18 @@ answer 라는 변수를 만들기보단 그대로 return 할 수 있는 값은 �
 
 <br>
 
-## Day 2
+## Day 2 Two Pointers
 
 ### 977. Squares of a Sorted Array
 
 예전엔 map과 sort로 풀었는데, two pointer 문제라고 한다.
+
+- two pointer로 풀었을 때
+  nums 배열의 길이를 가지고 새 배열을 만든다.  
+  배열에서 모든 아이템을 다 판별해야되니 배열의 length로 변수를 하나 만든다.  
+  기본적인 건 이진 검색이랑 while문 돌리는 게 비슷하다.  
+  가장 처음 인덱스와 마지막 인덱스를 비교해서 큰 수를 result의 k번 인덱스에 넣는다.  
+  이때 l은 왼쪽, r은 오른쪽에서 출발하므로, 아이템의 대소 비교가 끝나면 l은 ++, r은 --해줘야한다.
+  가장 작은 수는 끝까지 남아서 result의 제일 첫번째 인덱스에 들어가게 된다.
+
+---
