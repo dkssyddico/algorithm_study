@@ -174,4 +174,5 @@
 | 21.10.06 | LeetCode              | Algorithm I - 977. Squares of a Sorted Array      | 🎉 Done 🎉        |
 | 21.10.06 | LeetCode              | Algorithm I - 189. Rotate Array                   | review            |
 | 21.10.06 | LeetCode              | 백준 - 출력과 사칙연산                            | 🎉 Done 🎉        |
-| 21.10.06 | programmers           | 탐욕법 - 큰 수 만들기                             | 🎉 Done 🎉        |
+| 21.10.07 | programmers           | 탐욕법 - 큰 수 만들기                             | 🎉 Done 🎉        |
+| 21.10.08 | programmers           | 탐욕법 - 구명보트                                 | review            |
