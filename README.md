@@ -176,3 +176,4 @@
 | 21.10.06 | LeetCode              | 백준 - 출력과 사칙연산                            | 🎉 Done 🎉        |
 | 21.10.07 | programmers           | 탐욕법 - 큰 수 만들기                             | 🎉 Done 🎉        |
 | 21.10.08 | programmers           | 탐욕법 - 구명보트                                 | review            |
+| 21.10.09 | programmers           | 2021년 카카오 채용연계십 - 숫자 문자열과 영단어   | 🎉 Done 🎉        |
