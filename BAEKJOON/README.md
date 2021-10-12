@@ -58,5 +58,17 @@ for (let i = 1; i <= input[0]; i++) {
 }
 ```
 
+or
+
+```js
+// 여러 줄로 되있는거
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().split('\n');
+const N = Number(input[0].split(' ')[0]);
+const X = Number(input[0].split(' ')[1]);
+
+const A = input[1].split(' ');
+```
+
 입력값을 직접 보여주는 것도 아니고 콘솔로 찍어서 화면에 나오는 것도 아니라서 되게 불편하다.  
 우선 로직을 짜서 입력값 추출해오는 방법을 보고 있긴 함.
