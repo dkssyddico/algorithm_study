@@ -82,3 +82,79 @@
 
   console.log(times.reduce((a, b) => a + b, 0));
 }
+
+{
+  /**
+   * 1541번 잃어버린 괄호
+   * - 를 기준으로 먼저 문자열 나눠주기
+   * 나눈 문자열을 한 바퀴 돌면서 +가 있는 식은 +로 나눠서 각각 더해주고, 임시 배열에 넣기.
+   * 이 수들을 차례로 누적해 빼주면 최소값이다.
+   */
+
+  let math = require('fs').readFileSync('/dev/stdin').toString().trim();
+
+  let minusFirst = math.split('-');
+  let tmp = [];
+
+  for (let x of minusFirst) {
+    let num = 0;
+    let divideByPlus = x.split('+');
+    for (let y of divideByPlus) {
+      num += parseInt(y);
+    }
+    tmp.push(num);
+  }
+
+  let answer = tmp[0];
+
+  for (let i = 1; i < tmp.length; i++) {
+    answer -= tmp[i];
+  }
+
+  console.log(answer);
+}
+
+{
+  /**
+   * 13305번 주유소
+   * 첫번째 주유소에서 모든 거리 다채우기
+   * 첫번째 주유소에서 두번째 도시 갈 정도만 + 두번째에서 모든 도시 다 가기
+   * 무조건 첫번째 주유소에서는 두번째 도시까지 채울 수 밖에 없다. 디폴트?
+   * 이 기름이 다음 기름보다 싼 기름인지 확인하는게 필요.
+   * 근데 내 풀이는 시간이 진짜 오래걸림..
+   *  글고 문제에서 나온 정말 큰 수를 고려하지 않고 풀었따 ㅠㅠ
+   */
+
+  let input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+  let distances = input[1].split(' ').map(Number);
+  let oilPrices = input[2].split(' ').map(Number);
+
+  let firstOil = oilPrices[0];
+  let count = firstOil * distances.shift();
+
+  for (let i = 1; i < oilPrices.length - 1; i++) {
+    if (firstOil > oilPrices[i]) {
+      firstOil = oilPrices[i];
+    }
+    count += firstOil * distances.shift();
+  }
+
+  console.log(count);
+  {
+    // 다른 사람 풀이
+    const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    const n = +input[0];
+    const distance = input[1].split(' ').map((v) => BigInt(v));
+    const price = input[2].split(' ').map((v) => BigInt(v));
+
+    let curPrice = price[0];
+    let cost = 0n;
+
+    for (let i = 0; i < n - 1; i++) {
+      cost += curPrice * distance[i];
+      if (curPrice > price[i + 1]) curPrice = price[i + 1];
+    }
+    // 큰 숫자일 땐 꼭 문자열로 반환
+    console.log(String(cost));
+  }
+}
