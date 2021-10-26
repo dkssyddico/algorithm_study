@@ -23,3 +23,67 @@ for (let i = 0; i < cases; i++) {
   }
   console.log(fibonacci[num].join(' '));
 }
+
+{
+  /**
+   * 1904번 타일개수
+   * N = 1, 1
+   * N = 2, 00, 11
+   * N = 3, 001, 100, 111
+   * N = 4, 0000, 0011, 1100, 1111, 1001
+   * N = 5, 00001, 00100, 10000, 00111, 10011, 11001, 11100, 11111
+   * 예전에 피보나치 구하는거랑 비슷하다. 배열에 기존 수 저장해놓고 그거 하나씩 꺼내서 계산하는데 쓰는 것.
+   * 근데 왜 굳이 15746으로 나누는 걸까..?
+   */
+
+  let target = Number(require('fs').readFileSync('/dev/stdin').toString());
+
+  function solution(target) {
+    const arr = new Array();
+    arr[1] = 1;
+    arr[2] = 2;
+    for (let i = 3; i <= target; i++) {
+      arr[i] = (arr[i - 2] + arr[i - 1]) % 15746;
+    }
+    console.log(arr[target]);
+  }
+
+  solution(target);
+
+  {
+    // 다른 사람 풀이
+    const input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n');
+    const N = Number(input[0]);
+
+    let dp = new Array(N).fill(0);
+    (dp[0] = 1), (dp[1] = 2);
+
+    for (let i = 2; i < N; i++) dp[i] = (dp[i - 1] + dp[i - 2]) % 15746;
+    console.log(dp[N - 1]);
+  }
+}
+
+{
+  /**
+   * 9461번
+   * 피보나치랑 비슷 새로운 값 찾는 공식만 찾으면 됨.
+   * 백준은 값 설정하는게 젤 화난다.. 으으
+   */
+  const [cases, ...inputs] = require('fs')
+    .readFileSync('/dev/stdin', 'utf8')
+    .trim()
+    .split('\n')
+    .map(Number);
+
+  let max = Math.max(...inputs);
+  let ex = [1, 1, 1, 2, 2, 3, 4, 5, 7, 9];
+
+  for (let i = ex.length; i > max; i++) {
+    let result = ex[i - 1] + ex[i - 5];
+    ex.push(result);
+  }
+
+  inputs.forEach((input) => {
+    console.log(ex[input - 1]);
+  });
+}
