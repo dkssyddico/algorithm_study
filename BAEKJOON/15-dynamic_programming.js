@@ -87,3 +87,28 @@ for (let i = 0; i < cases; i++) {
     console.log(ex[input - 1]);
   });
 }
+
+{
+  /**
+   * 11053번 가장 긴 증가하는 부분 수열
+   * 이 문제는 인프런에서 배웠던 문제랑 똑같다.
+   * LIS.js 파일 참고
+   * arr의 n번째의 수는 부분 수열에서 가장 마지막 수가 되고, 그 마지막 수를 가지고 만든 가장 긴 부분 수열의 길이가 dy의 n번째 인덱스에 들어간다.
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  let cases = Number(input[0]);
+  let arr = input[1].split(' ').map((v) => Number(v));
+  let dp = new Array(cases).fill(0);
+  dp[0] = 1;
+  for (let i = 1; i < cases; i++) {
+    let max = 0;
+    for (let j = i - 1; j >= 0; j--) {
+      if (arr[i] > arr[j] && dp[j] > max) {
+        max = dp[j];
+      }
+    }
+    dp[i] = max + 1;
+  }
+  console.log(Math.max(...dp));
+}
