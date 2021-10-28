@@ -112,3 +112,54 @@ for (let i = 0; i < cases; i++) {
   }
   console.log(Math.max(...dp));
 }
+
+{
+  /**
+   * 11052 가장 긴 바이토닉 수열
+   * 한 쪽으로 커지는거 가장 긴걸 고르면..?
+   * 그 수를 기준으로 양 옆이 어떤지 계산하다
+   * 둘 다 더해서 하나 빼면 됨
+   * 생각보다 안어려웠다 헤헤 LIS구하는 것과 같다
+   * 대신 기준점을 가지고 왼쪽에서부터 기준점까지 숫자가 증가하는 증가수열과 기준점에서 오른쪽으로 갈수록 숫자가 감소하는 수열을 둘 다 구해줘야 한다.
+   *  역시 초깃값 세팅은 제일 첫번째 인덱스는 증가수열에서 1개, 제일 마지막 인덱스는 감소 수열에서 1개로 세팅해줘야 dp(right, left)하는 최초 조건이 된다.
+   */
+
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  let cases = Number(input[0]);
+  let arr = input[1].split(' ').map((v) => Number(v));
+
+  let left = new Array(cases).fill(0);
+  let right = new Array(cases).fill(0);
+  left[0] = 1;
+  right[arr.length - 1] = 1;
+
+  // 왼쪽부터 시작하는 최장 부분 수열 구하기
+  for (let i = 1; i < arr.length; i++) {
+    let max = 0;
+    for (let j = i - 1; j >= 0; j--) {
+      if (arr[i] > arr[j] && left[j] > max) {
+        max = left[j];
+      }
+    }
+    left[i] = max + 1;
+  }
+
+  for (let k = arr.length - 1; k >= 0; k--) {
+    let max = 0;
+    for (let l = k + 1; l <= arr.length - 1; l++) {
+      if (arr[k] > arr[l] && right[l] > max) {
+        max = right[l];
+      }
+    }
+    right[k] = max + 1;
+  }
+
+  let sumArr = [];
+  right.forEach((item, index) => {
+    let sum = item + left[index] - 1;
+    sumArr.push(sum);
+  });
+
+  console.log(Math.max(...sumArr));
+}
