@@ -5,7 +5,12 @@
  * 1이 나와야 0도 나올 수 있어서 그런 듯
  */
 
-let nums = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n').map(Number);
+let nums = require('fs')
+  .readFileSync('/dev/stdin')
+  .toString()
+  .trim()
+  .split('\n')
+  .map(Number);
 let cases = nums.shift();
 
 for (let i = 0; i < cases; i++) {
@@ -52,7 +57,10 @@ for (let i = 0; i < cases; i++) {
 
   {
     // 다른 사람 풀이
-    const input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n');
+    const input = require('fs')
+      .readFileSync('/dev/stdin', 'utf8')
+      .trim()
+      .split('\n');
     const N = Number(input[0]);
 
     let dp = new Array(N).fill(0);
@@ -202,7 +210,10 @@ for (let i = 0; i < cases; i++) {
   //두가지의 방법 중 더 큰 값을 택
   for (let i = 3; i < target; i++) {
     // 연속되지 않게 2계단 차이 나는 경우, 지금 계단 전의 계단을 밟고, 그 계단이 2계단을 뛰어서 올라온 경우를 비교해준다.
-    dp[i] = Math.max(stairs[i] + dp[i - 2], stairs[i] + stairs[i - 1] + dp[i - 3]);
+    dp[i] = Math.max(
+      stairs[i] + dp[i - 2],
+      stairs[i] + stairs[i - 1] + dp[i - 3]
+    );
   }
 
   console.log(dp[target - 1]);
@@ -232,4 +243,39 @@ for (let i = 0; i < cases; i++) {
   }
 
   console.log(dp[target]);
+}
+
+{
+  /**
+   * 1932번 정수 삼각형
+   */
+  let nums = '7\n3 8\n8 1 0\n2 7 4 4\n4 5 2 6 5';
+
+  const fs = require('fs');
+  const [target, ...arr] = fs
+    .readFileSync('/dev/stdin')
+    .toString()
+    .trim()
+    .split('\n');
+
+  const num = +target;
+  let dp = arr.map((v) => v.split(' ').map((v) => +v));
+
+  // 0번째 배열부터 시작해서 차례로 더할 수 있는 것들을 더해주면서 마지막 배열에서 가장 큰 수를 찾으면 된다.
+
+  // 첫번째 배열부터 시작하는 이유는 i - 1을 해서 0번째 경우부터 계산해줘야 하기 때문!
+  for (let i = 1; i < num; i++) {
+    for (let j = 0; j <= i; j++) {
+      let prev;
+      // 0은 다음 배열의 0번째 인덱스와 합해질 수 밖에 없다.
+      if (j === 0) prev = dp[i - 1][j];
+      // 마지막은 마지막끼리 합쳐진다.
+      else if (j === i) prev = dp[i - 1][j - 1];
+      // 중간 x 인덱스로 오는 방법은 이전 배열의 x - 1에서 오거나 x에서 올 수 밖에 없다.
+      // 이전 배열이라서 i - 1, j는 인덱스의 개념
+      else prev = Math.max(dp[i - 1][j - 1], dp[i - 1][j]);
+      dp[i][j] += prev;
+    }
+  }
+  console.log(Math.max(...dp[num - 1]));
 }
