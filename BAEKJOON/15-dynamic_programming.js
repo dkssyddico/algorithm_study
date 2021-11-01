@@ -279,3 +279,33 @@ for (let i = 0; i < cases; i++) {
   }
   console.log(Math.max(...dp[num - 1]));
 }
+
+{
+  // 1149번 RGB 거리
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  const target = Number(input[0]);
+  input.shift();
+  let houses = input.map((value) =>
+    value.split(' ').map((element) => Number(element))
+  );
+
+  let houses = [
+    [26, 40, 83],
+    [49, 60, 57],
+    [13, 89, 99],
+  ];
+
+  let target = 3;
+
+  for (let i = 1; i < target; i++) {
+    // 첫번째 집이 칠해질 수 있다는 것은 두번째 세번째 집 중에서 최소가 되는 값의 집이 칠해져서 칠해졌다는 의미 + 칠해졌으므로 자기 자신을 더한다
+    houses[i][0] = Math.min(houses[i - 1][1], houses[i - 1][2]) + houses[i][0];
+    // 두번째 집이 칠해질 수 있다는 것은 첫번째 세번째 집 중에서 최소가 되는 값의 집이 칠해져서 칠해졌다는 의미
+    houses[i][1] = Math.min(houses[i - 1][0], houses[i - 1][2]) + houses[i][1];
+    // 세번째 집이 칠해질 수 있다는 것은 두번째 세번째 집 중에서 최소가 되는 값의 집이 칠해져서 칠해졌다는 의미
+    houses[i][2] = Math.min(houses[i - 1][0], houses[i - 1][1]) + houses[i][2];
+  }
+
+  console.log(Math.min(...houses[target - 1]));
+}
