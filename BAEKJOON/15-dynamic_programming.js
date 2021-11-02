@@ -309,3 +309,38 @@ for (let i = 0; i < cases; i++) {
 
   console.log(Math.min(...houses[target - 1]));
 }
+
+{
+  /**
+   * 2156번
+   * -2
+   * -1
+   * 이전에 풀었던 계단 오르기 문제랑 비슷해서 거의 똑같이 풀었는데, 한 가지 주의할 점이 있었다.
+   * 그건 n번째 와인 순서가 왔을 때, 그 와인을 안마실 수도 있는 경우. 계단이랑 약간 다르다.
+   * 계단은 꼭 그 계단을 거쳐야했는데, 와인은 그냥 안마시고 넘길 수도 있다.
+   * 그건 앞의 두가지 경우들이 해당 와인을 마시는 경우보다 클 수 있어서다.
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let target = Number(input.shift());
+  // let wines = [6, 10, 13, 9, 8, 1];
+  let wines = input.map((i) => +i);
+  let dp = new Array(wines.length).fill(0);
+
+  dp[0] = wines[0];
+  dp[1] = Math.max(wines[0] + wines[1], wines[1]);
+  dp[2] = Math.max(wines[2] + wines[0], wines[2] + wines[1], dp[1]);
+
+  for (let i = 3; i < wines.length; i++) {
+    dp[i] = Math.max(
+      // 이번 와인 마시고 그 전전 와인에서 최댓값
+      wines[i] + dp[i - 2],
+      // 이번 와인 마시고 전에 와인도 마시고 그 전전 와인에서 최댓값
+      wines[i] + wines[i - 1] + dp[i - 3],
+      // 이번 와인 안마시는 경우
+      dp[i - 1]
+    );
+  }
+
+  console.log(dp[target - 1]);
+}
