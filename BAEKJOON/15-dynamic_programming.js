@@ -344,3 +344,52 @@ for (let i = 0; i < cases; i++) {
 
   console.log(dp[target - 1]);
 }
+
+{
+  /**
+   *  2565번 전깃줄 문제
+   * 전깃줄들이 안겹치도록 최소한으로 전깃줄을 빼주는 수를 구하는 문제.
+   * n번째와 n+1번째의 줄이 겹치는 건 n+1의 전기줄이 n보다 적은데 위치해서라는 것은 알았는데. 더 이전에 겹치는 것이 있다면? 그것까지는 해결을 못했다.
+   * 다른 사람의 풀이를 보고 이 문제가 왜 LIS인지 이해하게 되었다.
+   * 처음에 주어지는 전깃줄은 순서대로 되있지 않아 정렬이 필요하다.
+   * 왼쪽줄을 오름차순으로 정렬해주자.
+   * 그럼 오른쪽은 [8, 2, 9, 1, 4, 6, 7, 10] 이렇게 된다.
+   * 문제 요약?에서도 LIS응용이라고 했으니 알아차렸어야 했는데 ㅜ
+   * 여기서 최장 부분수열을 구해서 전깃줄의 수와 빼주는 것이 답이었다.
+   * 순서대로 온 전깃줄이 가장 긴 것이 최대 전깃줄의 수가 된다.
+   * 풀이를 알고나니 무언가 허무한 문제.
+   */
+  // let wires = [
+  //   [1, 8],
+  //   [3, 9],
+  //   [2, 2],
+  //   [4, 1],
+  //   [6, 4],
+  //   [10, 10],
+  //   [9, 7],
+  //   [7, 6],
+  // ];
+
+  const fs = require('fs');
+  let [target, ...wires] = fs
+    .readFileSync('/dev/stdin')
+    .toString()
+    .trim()
+    .split('\n');
+  target = Number(target);
+  wires = wires.map((w) => w.split(' ').map((n) => +n));
+  wires.sort((a, b) => a[0] - b[0]);
+  let dp = new Array(wires.length).fill(1);
+
+  for (let i = 1; i < wires.length; i++) {
+    let max = 0;
+    for (let j = i - 1; j >= 0; j--) {
+      if (wires[i][1] > wires[j][1] && dp[j] > max) {
+        max = dp[j];
+      }
+    }
+    dp[i] = max + 1;
+  }
+
+  console.log(target - Math.max(...dp));
+}
