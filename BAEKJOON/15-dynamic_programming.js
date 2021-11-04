@@ -393,3 +393,77 @@ for (let i = 0; i < cases; i++) {
 
   console.log(target - Math.max(...dp));
 }
+
+{
+  /**
+   * 9251번 최장 공통 부분 수열 LCS
+   * 백준 설정은 날 미치게한다.. 가끔씩..ㅎ
+   * 결론적으로 이 문제는 어떻게 보면 LIS 응용이라고 볼 수 있다.
+   * 가장 도움이 많이 된 블로그 https://velog.io/@emplam27/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-LCS-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Longest-Common-Substring%EC%99%80-Longest-Common-Subsequence
+   *
+   * 간과한 부분은 i 와 j 인덱스를 그대로 바로 비교해주는 것이 아니라 1부터 for loop이 돌기 때문에,
+   * i - 1, j - 1 이런식으로 비교해줘야 한다.
+   *  let str = 'ACAYKP';
+   *  let str2 = 'CAPCAK';
+   * 이런 두 문자열이 있다고 가정했을 때 시작은 A가 먼저 도는데 str2에서 같은 문자가 있는지를 찾는다.
+   * 같으면 + 1 해준다.
+   * 만약에 다르다면 i 인덱스에서 하나 적은 경우와 j 인덱스에서 하나 적은 경우를 비교해 큰 걸 가져온다.
+   * 이건 연속된 문자열이 아니어도 괜찮고, 부분 수열 문제에서도 보았듯이 가장 긴 수열을 찾는 문제다.
+   * 그래서 다르더라도 기존의 최대값이 2라면 2를 가질 수 있도록 해주는 것이다.
+   */
+  {
+    const readline = require('readline');
+
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    let input = [];
+
+    rl.on('line', function (line) {
+      input.push(line.trim());
+    }).on('close', function () {
+      let str = input[0].split('');
+      let str2 = input[1].split('');
+
+      let LCS = Array.from(Array(str.length + 1), () =>
+        Array(str2.length + 1).fill(0)
+      );
+
+      for (let i = 1; i <= str.length; i++) {
+        let x = str[i - 1];
+        for (let j = 1; j <= str2.length; j++) {
+          let y = str2[j - 1];
+          if (x !== y) {
+            LCS[i][j] = Math.max(LCS[i - 1][j], LCS[i][j - 1]);
+          } else {
+            LCS[i][j] = LCS[i - 1][j - 1] + 1;
+          }
+        }
+      }
+
+      console.log(LCS[str.length][str2.length]);
+      process.exit();
+    });
+  }
+  // 다른 사람 풀이
+  {
+    const [s1, s2] = require('fs')
+      .readFileSync('/dev/stdin', 'utf8')
+      .trim()
+      .split('\n');
+
+    const s1Len = s1.length,
+      s2Len = s2.length;
+    let dp = Array.from(Array(s1Len + 1), () => new Array(s2Len + 1).fill(0));
+
+    for (let i = 1; i <= s1Len; i++) {
+      for (let j = 1; j <= s2Len; j++) {
+        if (s1[i - 1] === s2[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+        else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+    console.log(dp[s1Len][s2Len]);
+  }
+}
