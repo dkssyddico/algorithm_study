@@ -467,3 +467,29 @@ for (let i = 0; i < cases; i++) {
     console.log(dp[s1Len][s2Len]);
   }
 }
+
+{
+  /**
+   * 연속합이라서 LIS와는 조금 또 다르다.
+   * 연속되지 않으면 의미가 없음.
+   * 여기 dp안에 들어있는 값은 연속값에서 최대값이다.
+   * dp 현재값(nums에서 현재값)이 dp 현재 - 1 값과 새로운 값이랑 더했을 때(연속합)보다 작으면 dp 현재 인덱스의 새로운 값이 된다 = 연속합이 되었단 의미. 만약에 연속합보다 크다면 굳이 더할 필요가 없이 nums의 현재 인덱스 값을 가지면 된다.
+   */
+
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  let target = Number(input[0]);
+  let nums = input[1].split(' ').map((v) => Number(v));
+  // let nums = [10, -4, 3, 1, 5, 6, -35, 12, 21, -1];
+  let dp = new Array(nums.length).fill(0);
+
+  for (let i = 0; i < nums.length; i++) {
+    dp[i] = nums[i];
+
+    if (dp[i] < dp[i - 1] + nums[i]) {
+      dp[i] = dp[i - 1] + nums[i];
+    }
+  }
+
+  console.log(Math.max(...dp));
+}
