@@ -493,3 +493,48 @@ for (let i = 0; i < cases; i++) {
 
   console.log(Math.max(...dp));
 }
+
+{
+  /**
+   * 12865번 평범한 배낭
+   * 인프런에서 풀었던 최고 점수 푸는 문제와 같다.
+   * dp 배열을 만드는데 dp 배열 길이는 무게 + 1로 해준다.
+   * dp 인덱스는 무게로, 해당 무게일 때 값에 최댓값이 들어가는 것이다.
+   * 처음에 주어진 배낭이 무게가 6이고 13이면
+   * dp[6], dp[7]까지 구할 수 있다.
+   * 왜냐면 6 이상이어야지만 저 배낭을 들 수 있기 때문이다.
+   * [0, 0, 0, 0, 0, 0, 13, 13]
+   * [0, 0, 0, 0, 8, 8, 13, 13]
+   * [0, 0, 0, 6, 8, 8, 13, 14]
+   * [0, 0, 0, 6, 8, 12, 13, 14]
+   */
+  // let bagsNum = 4;
+  // let maxWeight = 7;
+  // let bags = [
+  //   [6, 13],
+  //   [4, 8],
+  //   [3, 6],
+  //   [5, 12],
+  // ];
+
+  let fs = require('fs');
+  let input = fs
+    .readFileSync('/dev/stdin')
+    .toString()
+    .split('\n')
+    .map((i) => i.split(' ').map((v) => +v));
+  let cases = input.shift();
+
+  let dp = Array.from({ length: cases[1] + 1 }, () => 0);
+
+  for (let i = 0; i < cases[0]; i++) {
+    let weight = input[i][0]; // 가방 무게
+    let worth = input[i][1]; //가방 가치
+    // 최대 무게부터 현재 배낭의 무게까지 구한다.
+    for (let j = cases[1]; j >= weight; j--) {
+      // dp[j - weight]를 해주는 이유는 현재 가치 + dp(j - 현재 무게)가 현재 가방 무게 + 그 무게에서 남는 무게 즉, 모든 배낭 무게를 커버하고 총 가치값이 되기 때문이다.
+      dp[j] = Math.max(dp[j], dp[j - weight] + worth);
+    }
+  }
+  console.log(dp[cases[1]]);
+}
