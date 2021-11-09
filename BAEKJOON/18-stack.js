@@ -9,11 +9,7 @@
   {
     let stack = [];
     let result = [];
-    const input = require('fs')
-      .readFileSync('/dev/stdin')
-      .toString()
-      .trim()
-      .split('\n');
+    const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 
     let cases = Number(input.shift());
 
@@ -45,10 +41,7 @@
   {
     // reduce를 통해 푸는 방식
     // 간간히 배열이 나오는 알고리즘 문제에서는 reduce를 통해 해결하는 경우도 심심찮게 많이 보인다.
-    const array = require('fs')
-      .readFileSync('/dev/stdin')
-      .toString()
-      .split('\n');
+    const array = require('fs').readFileSync('/dev/stdin').toString().split('\n');
     array.shift();
 
     const stack = [];
@@ -64,11 +57,43 @@
       },
     };
 
-    const result = array.reduce(
-      (acc, v) => acc + (fun[v] ? `${fun[v]()}\n` : fun.push(v)),
-      ''
-    );
+    const result = array.reduce((acc, v) => acc + (fun[v] ? `${fun[v]()}\n` : fun.push(v)), '');
 
     console.log(result);
   }
+}
+
+{
+  /**
+   * 10773번 제로
+   * 0이 나올 때는 가장 최근의 수를 지울 수 있다.
+   * 내가 푼 방식에서 자꾸 출력 초과라는 오류가 떠서 다른 사람 풀이를 참고했다.
+   * 보니까 배열에 아예 없는 경우도 고려를 해줘야 하는 것 같다.
+   * 차례로 아래 풀이처럼 정석대로 스택에 값 넣고 빼고, 최종적으로 합 구하는게 안전한 풀이인 것 같다.
+   * 어제 시간 초과 나온게 계속 신경이 쓰여 빠르게만 하려고 했던 게 잘못이다 ㅜ
+   */
+
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+  const caseCount = Number(input[0]);
+  const stack = [];
+
+  for (let i = 1; i <= caseCount; i += 1) {
+    const value = Number(input[i]);
+
+    if (value === 0) {
+      stack.pop();
+    } else {
+      stack.push(value);
+    }
+  }
+
+  let result = 0;
+
+  for (let i = 0; i < stack.length; i += 1) {
+    result += stack[i];
+  }
+
+  console.log(result);
 }
