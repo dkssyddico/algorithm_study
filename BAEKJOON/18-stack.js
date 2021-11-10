@@ -97,3 +97,31 @@
 
   console.log(result);
 }
+
+{
+  /**
+   * 9012번 괄호 문제
+   * 예전에도 몇번 풀었다. )가 나왔을때 처리를 어떻게 하느냐가 관건.
+   * 다 비었는데 )가 나오는거면 바로 NO 이다.
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  let cases = Number(input.shift());
+
+  for (let i = 0; i < cases; i++) {
+    let answer = 'YES';
+    let brackets = input[i];
+    let stack = [];
+    for (let x of brackets) {
+      if (x === '(') stack.push(x);
+      else {
+        if (stack.length === 0) answer = 'NO';
+        stack.pop();
+      }
+    }
+    if (stack.length > 0) {
+      answer = 'NO';
+    }
+    console.log(answer);
+  }
+}

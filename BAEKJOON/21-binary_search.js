@@ -122,3 +122,48 @@
   }
   console.log(answer);
 }
+
+{
+  /**
+   * 2805번 나무자르기
+   * StackSizeExceeded 나와서 다른 사람 풀이 참고. 높이가 커서 Math.max를 하면 안되나보다.
+   * 전체적인 풀이는 위에 문제랑 비슷하다.
+   */
+  // let trees = [4, 42, 40, 26, 46];
+  // let minimumTrees = 20;
+
+  const fs = require('fs');
+  const [n, t] = fs.readFileSync('./dev/stdin').toString().trim().split('\n');
+
+  const minimumTrees = n.split(' ')[1];
+  const trees = [];
+  let max = 0;
+  t.split(' ').forEach((v) => {
+    v = +v;
+    if (+v > max) max = v;
+    trees.push(v);
+  });
+
+  let min = 0;
+  let answer = 0;
+  while (min <= max) {
+    let mid = Math.floor((min + max) / 2);
+    let cnt = 0;
+    trees.forEach((t) => {
+      let left = t - mid;
+      if (left > 0) {
+        cnt += left;
+      }
+    });
+    if (cnt >= minimumTrees) {
+      if (mid > answer) {
+        answer = mid;
+      }
+      min = mid + 1;
+    } else {
+      max = mid - 1;
+    }
+  }
+
+  console.log(answer);
+}
