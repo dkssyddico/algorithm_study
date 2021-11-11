@@ -125,3 +125,42 @@
     console.log(answer);
   }
 }
+
+{
+  /**
+   * 4949번 균형잡힌 세상
+   * 어떻게 푸는지도 알겠고 심지어 예제를 가지고도 옳은 답이 나왔는데 백준에서 돌리면 계속 틀려서.. 무언가 틀렸겠거니 하고 다른 사람 풀이를 참고한다 ㅜ
+   * 백준은 정확히 어떤 부분이 틀렸는지 명확하게 알 수 없어서 불편하다 ㅠㅠ
+   * 문자열이 '.' 이거만 있을 때 주의해주면 되고, 짝이 안맞는 경우에 stack의 길이는 어떻게 될지 생각해보면 된다.
+   */
+
+  {
+    // 다른 사람 풀이
+    let fs = require('fs');
+    let strings = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+    for (let input of inputs) {
+      if (input === '.') break;
+      let answer = 'yes';
+      let stack = [];
+      for (x of input) {
+        if (x === '(' || x === '[') {
+          stack.push(x);
+        }
+        if (x === ')' || x === ']') {
+          if (x === ')' && stack[stack.length - 1] === '(') {
+            stack.pop();
+            continue;
+          }
+          if (x === ']' && stack[stack.length - 1] === '[') {
+            stack.pop();
+            continue;
+          }
+          answer = 'no';
+          break;
+        }
+      }
+      if (stack.length > 0) answer = 'no';
+      console.log(answer);
+    }
+  }
+}

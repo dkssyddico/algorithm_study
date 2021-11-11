@@ -167,3 +167,50 @@
 
   console.log(answer);
 }
+
+{
+  /**
+   * 2110번 공유기 설치
+   * 주어진 공유기 갯수와 집 갯수를 가지고 공유기를 설치하는 데 있어서 집 사이의 최대 거리를 구하는 문제
+   * 1, 2, 4, 8, 9
+   * 위에 문제와는 다른 점은 주어진 집을 가지고 범위를 정해야한다는 점이다.
+   * 가장 적은 거리는 1, 초기 최대 거리는 가장 큰 수 - 가장 적은 수를 한다.
+   * 그리고 이분 탐색 답게 mid를 구하고, 처음 집을 기준으로 다음 집과의 거리를 mid와 비교해본다.
+   * 이때 공유기 카운트는 미리 1을 해주는데, 이건 처음 집에 설치된다는 의미다.
+   * 처음 집 거리와 다음 집의 거리가 mid보다 같거나 크면 그때는 공유기를 하나 설치해줘야 한다.
+   * mid 거리와 실제 거리차이가 맞지 않기 때문에 설치해주는 것!
+   * 그 다음은 최대 거리를 구하기 위해 계속 반복이다. 주어진 공유기 갯수를 만족하지 못하면 max 값을 mid -1 값으로 줄여주고, 크게 나오면 min 값을 mid + 1 값으로 올려주면 된다.
+   * 참고 블로그(https://knowable.tistory.com/29)
+   */
+  const fs = require('fs');
+  let [A, ...B] = fs.readFileSync('./dev/stdin').toString().trim().split('\n');
+
+  let [houseNum, share] = A.split(' ');
+  const houses = B.map((v) => +v).sort((a, b) => a - b);
+
+  let max = houses[houses.length - 1] - houses[0];
+  let min = 1;
+  let answer = 0;
+
+  while (min <= max) {
+    let mid = Math.floor((min + max) / 2);
+    let cnt = 1;
+    let prevHouse = houses[0];
+    for (let i = 1; i < houses.length; i++) {
+      if (houses[i] - prevHouse >= mid) {
+        cnt++;
+        prevHouse = houses[i];
+      }
+    }
+    if (cnt >= share) {
+      if (mid > answer) {
+        answer = mid;
+      }
+      min = mid + 1;
+    } else {
+      max = mid - 1;
+    }
+  }
+
+  console.log(answer);
+}
