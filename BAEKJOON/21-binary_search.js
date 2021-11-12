@@ -214,3 +214,36 @@
 
   console.log(answer);
 }
+
+{
+  /**
+   * 1300번 문제
+   * 이해를 제대로 하지 못했다 ㅜ
+   * 참고 블로그(https://devowen.com/265)/(https://maivve.tistory.com/151)
+   */
+  // let K = 7;
+  // let N = 4;
+
+  const fs = require('fs');
+  let [N, K] = fs.readFileSync('./dev/stdin').toString().trim().split('\n');
+
+  let min = 1;
+  let max = K;
+  let result = 0;
+
+  while (min <= max) {
+    let mid = Math.floor((min + max) / 2);
+    let count = 0;
+    for (let i = 1; i <= N; i++) {
+      count += Math.min(Math.floor(mid / i), N);
+    }
+    if (count >= K) {
+      result = mid;
+      max = mid - 1;
+    } else {
+      min = mid + 1;
+    }
+  }
+
+  console.log(result);
+}

@@ -164,3 +164,86 @@
     }
   }
 }
+
+{
+  /**
+   * 1874번 스택 수열
+   * 문제가 무슨 말인지 이해하는 데 한참 걸렸다.
+   * 빈 배열 stack을 하나 만든다.
+   * 이제 문제에서 주어지는 숫자가 (4) stack의 마지막 숫자와 일치하지 않으면 숫자배열의 처음 숫자부터 빈 배열에 넣어준다.
+   * 이때 stack에 무언가 숫자가 들어간다면 +이고, 문제의 숫자와 stack의 끝 수가 일치하면 빼줘야 하므로 - 이다.
+   * 처음에는 stack에 당연히 아무 숫자도 없을 것이니 첫 숫자까지 도달한만큼의 숫자를 stack에 넣어준다. (4이면, [1, 2, 3, 4])
+   * 그 다음 숫자는 3이니 스택에서 또 빼주면 되고, 다음 숫자는 6이다. 그럼 또 6만큼 더 해준다. [1, 2, 5, 6]
+   * 계속 반복인데, 주어진 수열에 따라서는 stack의 마지막 숫자가 문제의 배열에 현재 숫자보다 클 수가 있다.
+   * 왜냐하면 stack은 숫자가 계속 오름 차순으로 들어가기 때문이다.
+   * [1, 2, 5, 3, 4] 가 문제의 배열일 경우 차례로 하다보면 stack은 [3, 4]가 되고 3은 stack의 마지막 숫자인 4보다 작다.
+   * 이런 경우 때문에 'NO'를 해주는 것.
+   * 답안들을 보다보니 count 변수를 정해주는 것이 제일 중요한 것 같다. 이 count가 stack에 넣을 수 있는 숫자다.
+   */
+  {
+    // 백준에서 다른 사람 풀이
+    let input = require('fs')
+      .readFileSync('dev/stdin')
+      .toString()
+      .trim()
+      .split('\n')
+      .map((v) => +v);
+
+    const N = input.shift();
+    let stack = [];
+    let answer = '';
+    let count = 1;
+
+    for (let now of input) {
+      if (stack[stack.length - 1] > now) {
+        answer = 'NO';
+        break;
+      }
+
+      while (count <= now) {
+        stack.push(count++);
+        answer += '+\n';
+      }
+
+      if (stack[stack.length - 1] === now) {
+        stack.pop();
+        answer += '-\n';
+      }
+    }
+
+    console.log(answer.trim());
+  }
+  {
+    // 다른 분 풀이 (https://leylaoriduck.tistory.com/481)
+    // 이걸 보고 대충 이해했음.
+    // 근데 이걸 답으로 넣으면 틀렸다구 나옴. 대충 이런식이다라고 참고.
+    let fs = require('fs');
+    let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+    let cases = input[0];
+    let arr = [];
+    let stack = [];
+    let answer = '';
+
+    for (let i = 0; i < cases; i++) {
+      arr[i] = i + 1;
+    }
+
+    for (let j = 1; j <= cases; j++) {
+      let count = 1;
+      while (count <= cases && stack[stack.length - 1] !== input[j]) {
+        stack.push(arr.shift());
+        answer += '+\n';
+        count++;
+      }
+      if (stack[stack.length - 1] === input[j]) {
+        stack.pop();
+        answer += '-\n';
+      } else {
+        console.log('NO');
+        break;
+      }
+    }
+
+    console.log(answer);
+  }
+}
