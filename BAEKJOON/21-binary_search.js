@@ -247,3 +247,49 @@
 
   console.log(result);
 }
+
+{
+  /**
+   * 12015번 가장 긴 증가하는 부분수열
+   * 가장 긴 부분수열을 담을 수 있는 새로운 배열을 하나 만든다.
+   * 이 배열을 result라고 하고, 문제 배열에 가장 첫번째에 위치한 값을 하나 먼저 담아둔다.
+   * 그리고 cases의 숫자만큼 for문을 돈다.
+   * 여기서 result 배열에 마지막 수가 nums의 현재값보다 작으면 result에 새로운 값이 들어갈 수 있다.
+   * 그런데 만약 nums의 현재값이 더 작을 경우엔 result에서 새로 들어갈 수 있는 경우(result의 index)를 찾아야 한다.
+   * 그게 binarySearch 함수가 하는 일이다. result와 문제 배열, i를 받는다.
+   * 이분 탐색으로 새로운 수가 result에서 적절한 idx를 가지고 result 배열에 들어갈 수 있게 해주는 일을 한다.
+   * 이때 이미 같은 수가 있다면 이 함수로 인해서 그 해당 인덱스로 들어갈 수 있다.
+   */
+  const fs = require('fs');
+  let [cases, nums] = fs.readFileSync('./dev/stdin').toString().trim().split('\n');
+  nums = nums.split(' ').map((i) => +i);
+
+  let result = [nums[0]];
+
+  function binarySearch(result, nums, i) {
+    let low = 0;
+    let high = result.length - 1;
+    while (low < high) {
+      const mid = Math.floor((low + high) / 2);
+      if (result[mid] < nums[i]) {
+        low = mid + 1;
+      } else if (result[mid] > nums[i]) {
+        high = mid;
+      } else {
+        return mid;
+      }
+    }
+    return high;
+  }
+
+  for (let i = 1; i < cases; i++) {
+    if (result[result.length - 1] < nums[i]) {
+      result.push(nums[i]);
+      continue;
+    }
+    const idx = binarySearch(result, nums, i);
+    result[idx] = nums[i];
+  }
+
+  console.log(result.length);
+}
