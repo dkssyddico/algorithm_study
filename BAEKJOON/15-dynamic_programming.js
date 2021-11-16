@@ -5,12 +5,7 @@
  * 1이 나와야 0도 나올 수 있어서 그런 듯
  */
 
-let nums = require('fs')
-  .readFileSync('/dev/stdin')
-  .toString()
-  .trim()
-  .split('\n')
-  .map(Number);
+let nums = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n').map(Number);
 let cases = nums.shift();
 
 for (let i = 0; i < cases; i++) {
@@ -57,10 +52,7 @@ for (let i = 0; i < cases; i++) {
 
   {
     // 다른 사람 풀이
-    const input = require('fs')
-      .readFileSync('/dev/stdin', 'utf8')
-      .trim()
-      .split('\n');
+    const input = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n');
     const N = Number(input[0]);
 
     let dp = new Array(N).fill(0);
@@ -210,10 +202,7 @@ for (let i = 0; i < cases; i++) {
   //두가지의 방법 중 더 큰 값을 택
   for (let i = 3; i < target; i++) {
     // 연속되지 않게 2계단 차이 나는 경우, 지금 계단 전의 계단을 밟고, 그 계단이 2계단을 뛰어서 올라온 경우를 비교해준다.
-    dp[i] = Math.max(
-      stairs[i] + dp[i - 2],
-      stairs[i] + stairs[i - 1] + dp[i - 3]
-    );
+    dp[i] = Math.max(stairs[i] + dp[i - 2], stairs[i] + stairs[i - 1] + dp[i - 3]);
   }
 
   console.log(dp[target - 1]);
@@ -252,11 +241,7 @@ for (let i = 0; i < cases; i++) {
   let nums = '7\n3 8\n8 1 0\n2 7 4 4\n4 5 2 6 5';
 
   const fs = require('fs');
-  const [target, ...arr] = fs
-    .readFileSync('/dev/stdin')
-    .toString()
-    .trim()
-    .split('\n');
+  const [target, ...arr] = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
   const num = +target;
   let dp = arr.map((v) => v.split(' ').map((v) => +v));
@@ -286,9 +271,7 @@ for (let i = 0; i < cases; i++) {
   let input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
   const target = Number(input[0]);
   input.shift();
-  let houses = input.map((value) =>
-    value.split(' ').map((element) => Number(element))
-  );
+  let houses = input.map((value) => value.split(' ').map((element) => Number(element)));
 
   let houses = [
     [26, 40, 83],
@@ -371,11 +354,7 @@ for (let i = 0; i < cases; i++) {
   // ];
 
   const fs = require('fs');
-  let [target, ...wires] = fs
-    .readFileSync('/dev/stdin')
-    .toString()
-    .trim()
-    .split('\n');
+  let [target, ...wires] = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
   target = Number(target);
   wires = wires.map((w) => w.split(' ').map((n) => +n));
   wires.sort((a, b) => a[0] - b[0]);
@@ -427,9 +406,7 @@ for (let i = 0; i < cases; i++) {
       let str = input[0].split('');
       let str2 = input[1].split('');
 
-      let LCS = Array.from(Array(str.length + 1), () =>
-        Array(str2.length + 1).fill(0)
-      );
+      let LCS = Array.from(Array(str.length + 1), () => Array(str2.length + 1).fill(0));
 
       for (let i = 1; i <= str.length; i++) {
         let x = str[i - 1];
@@ -449,10 +426,7 @@ for (let i = 0; i < cases; i++) {
   }
   // 다른 사람 풀이
   {
-    const [s1, s2] = require('fs')
-      .readFileSync('/dev/stdin', 'utf8')
-      .trim()
-      .split('\n');
+    const [s1, s2] = require('fs').readFileSync('/dev/stdin', 'utf8').trim().split('\n');
 
     const s1Len = s1.length,
       s2Len = s2.length;
@@ -537,4 +511,24 @@ for (let i = 0; i < cases; i++) {
     }
   }
   console.log(dp[cases[1]]);
+}
+
+{
+  /**
+   * 11726번 2xn 타일링
+   * 타일을 만들 수 있는 경우를 1부터 4정도까지 그려보니 피보나치인게 감이 와서 바로 풀음
+   * 정답률에 비해 쉬운 문제였다.
+   */
+  let fs = require('fs');
+  let input = Number(fs.readFileSync('/dev/stdin').toString().trim());
+
+  let dp = new Array(1001).fill(0);
+  dp[1] = 1;
+  dp[2] = 2;
+
+  for (let i = 3; i <= input; i++) {
+    dp[i] = (dp[i - 1] + dp[i - 2]) % 10007;
+  }
+
+  console.log(dp[input]);
 }
