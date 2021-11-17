@@ -532,3 +532,24 @@ for (let i = 0; i < cases; i++) {
 
   console.log(dp[input]);
 }
+
+{
+  /**
+   * 2748번 피보나치 수열
+   * 원래 하던 방식으로 dp를 이용해 구했으나 통과가 안됐다!
+   * 찾아보니 피보나치 수가 커질 수록 JS가 표현할 수 있는 범위를 넘어버리기 때문에 bigInt 처리를 해줘야한다고 한다.
+   * 저번에 문제 풀면서 배웠듯이, bigInt 처리를 하면 출력할 때는 문자열 처리를 마지막으로 해줘야 한다.
+   */
+  let target = Number(require('fs').readFileSync('/dev/stdin').toString().trim());
+
+  let dp = new Array(90).fill(0);
+  dp[0] = 0;
+  dp[1] = 1;
+  dp[2] = 1;
+
+  for (let i = 3; i <= target; i++) {
+    dp[i] = BigInt(dp[i - 1]) + BigInt(dp[i - 2]);
+  }
+
+  console.log(dp[target].toString());
+}
