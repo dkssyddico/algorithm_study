@@ -553,3 +553,40 @@ for (let i = 0; i < cases; i++) {
 
   console.log(dp[target].toString());
 }
+
+{
+  /**
+   * 2193번 이친수
+   * 역시나 피보나치 문제.. 위에꺼 고대로 갖다씀
+   */
+  let target = Number(require('fs').readFileSync('/dev/stdin').toString().trim());
+
+  let dp = new Array(90).fill(0);
+  dp[0] = 0;
+  dp[1] = 1;
+  dp[2] = 1;
+
+  for (let i = 3; i <= target; i++) {
+    dp[i] = BigInt(dp[i - 1]) + BigInt(dp[i - 2]);
+  }
+
+  console.log(dp[target].toString());
+}
+
+{
+  /**
+   * 11727번 2xn 타일링 2
+   */
+  let fs = require('fs');
+  let input = Number(fs.readFileSync('/dev/stdin').toString().trim());
+
+  let dp = new Array(1001).fill(0);
+  dp[1] = 1;
+  dp[2] = 3;
+
+  for (let i = 3; i <= input; i++) {
+    dp[i] = (dp[i - 1] + 2 * dp[i - 2]) % 10007;
+  }
+
+  console.log(dp[input]);
+}
