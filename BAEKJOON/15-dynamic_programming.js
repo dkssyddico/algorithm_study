@@ -590,3 +590,96 @@ for (let i = 0; i < cases; i++) {
 
   console.log(dp[input]);
 }
+
+{
+  /**
+   * 14501번 퇴사
+   * 푸는 방법을 알아내서 만족.
+   * https://kscodebase.tistory.com/366
+   */
+
+  // let cases = [
+  //   [3, 10],
+  //   [5, 20],
+  //   [1, 10],
+  //   [1, 20],
+  //   [2, 15],
+  //   [4, 40],
+  //   [2, 200],
+  // ];
+
+  let cases = [
+    [1, 1],
+    [1, 2],
+    [1, 3],
+    [1, 4],
+    [1, 5],
+    [1, 6],
+    [1, 7],
+    [1, 8],
+    [1, 9],
+    [1, 10],
+  ];
+
+  // const fs = require('fs');
+  // let [deadline, ...cases] = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+
+  const days = [0];
+  const money = [0];
+
+  cases.forEach((c) => {
+    days.push(parseInt(c[0]));
+    money.push(parseInt(c[1]));
+  });
+
+  let deadline = cases.length;
+
+  const DP = new Array(days.length).fill(0);
+
+  for (let i = 1; i < DP.length; i++) {
+    DP[i] = money[i];
+
+    // 현재 날이랑 끝나는 날을 합쳐서 퇴사날을 넘으면, dp[i-1] 값이 dp[i]의 최대값이 된다.
+    if (i + days[i] - 1 > deadline) {
+      DP[i] = DP[i - 1];
+      continue;
+    }
+
+    let temp = DP[i];
+    for (let j = 1; j < i; j++) {
+      // i일 이전에 얻을 수 있는 경우의 수를 dp[i]에 넣어주는 작업!
+      if (j + days[j] <= i) {
+        // dp[i]와 / i일에 얻을 수 있는 이익과 이전에 얻었던 이익의 최댓값을 합한 값을 비교해준다.
+        temp = Math.max(temp, DP[j] + money[i]);
+      }
+    }
+    DP[i] = temp;
+  }
+
+  console.log(Math.max(...DP));
+}
+
+{
+  /**
+   * 1010번 다리놓기
+   * 조합으로 푸는 문제
+   * mCn이 된다. = m! / (m-n)! * n!
+   * https://tesseractjh.tistory.com/3
+   */
+  let east = 13;
+  let west = 29;
+
+  const factorial = (num) => {
+    if (num === 1 || num === 0) {
+      return 1;
+    }
+    return num * factorial(num - 1);
+  };
+
+  cases.forEach((item) => {
+    let east = parseInt(item[0]);
+    let west = parseInt(item[1]);
+    const answer = factorial(east) / (factorial(west) * factorial(east - west));
+    console.log(parseInt(answer + 0.5));
+  });
+}
