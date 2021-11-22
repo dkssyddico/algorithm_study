@@ -683,3 +683,33 @@ for (let i = 0; i < cases; i++) {
     console.log(parseInt(answer + 0.5));
   });
 }
+
+{
+  // 11052번 카드 구매하기
+  // let cards = 5;
+  // //          1 2 3 4
+  // let price = [10, 9, 8, 7, 6];
+
+  // 비싸게 주고 산다.
+  // 4장을 살 때는 자기 자신이거나 혹은 이전에 있는 숫자를 조합하거나다. 4+0, 1 + 3, 2+ 2 이런식으로
+  // 이 숫자 조합하는 방법에 대해서 어렴풋하게 계속 깨우쳐가는 것 같다. 굿!
+
+  const fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let cards = input[0];
+  price = input[1].split(' ').map(Number);
+
+  let dp = new Array(cards + 1).fill(0);
+
+  for (let a = 1; a <= cards; a++) {
+    dp[a] = price[a - 1];
+  }
+
+  for (let i = 1; i <= cards; i++) {
+    for (let j = 1; j <= i; j++) {
+      dp[i] = Math.max(dp[i], dp[i - j] + dp[j]);
+    }
+  }
+
+  console.log(dp[cards]);
+}
