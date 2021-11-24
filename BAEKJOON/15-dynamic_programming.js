@@ -747,3 +747,33 @@ for (let i = 0; i < cases; i++) {
   console.log(dp);
   console.log(dp[target].reduce((a, v) => a + v, 0) % 10007);
 }
+
+{
+  /**
+   * 2293번 동전1
+   * 결론적으로는 node로는 풀 수 없는 문제다.
+   * 아무도 맞힌 사람이 없음
+   * https://peachsoong.tistory.com/7
+   */
+  let target = 10;
+  let coins = [1, 2, 5];
+
+  let dp = new Array(target + 1).fill(0);
+
+  // j - coins[i]가 0이 되면 동전의 값과 구하려는 값이 일치하니까 그 동전 하나만 써서 구하려는 값을 구할 수 있다는 의미. 그래서 경우의 수가 1
+  dp[0] = 1;
+
+  // i는 쓸 수 있는 동전의 갯수
+  for (let i = 0; i <= coins.length; i++) {
+    // j는 만들고자 하는 숫자까지.
+    // j - coins[i]는 coins[i]를 가지고 j 값을 만들 수 있는 경우를 계산해주는 것이다.
+    // j가 3일 때 j - coins[i]가 1이라면 그 1을 만들었던 경우의 수를 더해주는 것.
+    for (let j = 1; j <= target; j++) {
+      if (j - coins[i] >= 0) {
+        dp[j] += dp[j - coins[i]];
+      }
+    }
+  }
+
+  console.log(dp);
+}

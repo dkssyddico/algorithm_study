@@ -158,3 +158,23 @@
     console.log(String(cost));
   }
 }
+
+{
+  // 1026번 보물
+  // 그리디라기 보단 정렬에 가까운 듯한 문제
+  const fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let number = Number(input[0]);
+
+  let a = input[1].split(' ').map(Number);
+  let b = input[2].split(' ').map(Number);
+
+  a = a.sort((a, b) => a - b);
+  b = b.sort((a, b) => b - a);
+
+  let result = a.reduce((prev, curr, index) => {
+    return prev + curr * b[index];
+  }, 0);
+
+  console.log(result);
+}
