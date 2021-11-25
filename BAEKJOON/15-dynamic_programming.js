@@ -777,3 +777,32 @@ for (let i = 0; i < cases; i++) {
 
   console.log(dp);
 }
+
+{
+  /**
+   * 1169번
+   * https://lakelouise.tistory.com/61
+   * dp[i - j * j] + 1 를 해주는 이유
+   * 예로 dp[4] dp[4 - 2 * 2] 4 자체가 2 * 2 라서 하나가 된다
+   * dp[0]은 0이니까 한 개를 더해줘야한다.
+   * dp 자체 개념은 어렵지 않지만 문제에서 주어진 답을 구하는 공식을 만들어내는 게 어렵다..
+   */
+  // let target = 7;
+
+  const fs = require('fs');
+  let target = Number(fs.readFileSync('/dev/stdin').toString().trim());
+
+  let dp = new Array(target + 1).fill(1);
+
+  for (let i = 0; i <= target; i++) {
+    dp[i] = i;
+  }
+
+  for (let i = 2; i <= target; i++) {
+    for (let j = 2; j * j <= i; j++) {
+      dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
+    }
+  }
+
+  console.log(dp[target]);
+}
