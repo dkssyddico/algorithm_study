@@ -178,3 +178,49 @@
 
   console.log(result);
 }
+
+{
+  /**
+   * 5585번 거스름돈
+   */
+  const fs = require('fs');
+  let input = Number(fs.readFileSync('/dev/stdin').toString().trim());
+  let target = 1000 - input;
+  let coins = [500, 100, 50, 10, 5, 1];
+  let count = 0;
+  for (let i = 0; i < coins.length; i++) {
+    let coin = coins[i];
+    if (Math.floor(target / coin) === 0) {
+      continue;
+    }
+    count += Math.floor(target / coin);
+    target = target % coin;
+  }
+
+  console.log(count);
+}
+
+{
+  /**
+   * 2217번 로프
+   * 로프가 여러 개 있을 때 로프 중량을 내림차순으로 정렬한다.
+   * 가장 많이 들 수 있는 무게를 가장 높은 중량을 가진 로프로 초기화한다.
+   * 로프가 여러 개 일 때 들 수 있는 최대 중량은 가장 적은 중량을 가진 로프의 중량 * 로프의 개수다.
+   * for문을 돌면서 max값과 비교해서 max값을 계속 바꿔주면 된다.
+   */
+  const fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let nums = input.shift();
+  // let input = [10, 15];
+
+  let lopes = input.map(Number).sort((a, b) => b - a);
+  let max = lopes[0];
+
+  for (let i = 1; i < nums; i++) {
+    if (lopes[i] * (i + 1) > max) {
+      max = lopes[i] * (i + 1);
+    }
+  }
+
+  console.log(max);
+}
