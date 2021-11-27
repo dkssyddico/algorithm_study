@@ -224,3 +224,24 @@
 
   console.log(max);
 }
+
+{
+  /**
+   * 10126번
+   */
+  const fs = require('fs');
+  let target = Number(fs.readFileSync('/dev/stdin').toString().trim());
+  let times = [300, 60, 10];
+  let count = new Array(times.length).fill(0);
+
+  for (let i = 0; i < times.length; i++) {
+    let time = times[i];
+    if (Math.floor(target / time) === 0) {
+      continue;
+    }
+    count[i] = Math.floor(target / time);
+    target = target % time;
+  }
+
+  console.log(target > 0 ? -1 : count.join(' '));
+}
