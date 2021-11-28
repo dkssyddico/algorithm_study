@@ -245,3 +245,25 @@
 
   console.log(target > 0 ? -1 : count.join(' '));
 }
+
+{
+  /**
+   * 10610번 30
+   */
+  const fs = require('fs');
+  let target = fs.readFileSync('/dev/stdin').toString().trim();
+
+  let sum = 0;
+  let answer = -1;
+  target = Array.from(target);
+  target.forEach((e) => {
+    sum += parseInt(e);
+  });
+  if (sum % 3 === 0) {
+    target.sort((a, b) => b - a);
+    if (target[target.length - 1] === '0') {
+      answer = target.join('');
+    }
+  }
+  console.log(answer);
+}
