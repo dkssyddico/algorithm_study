@@ -267,3 +267,23 @@
   }
   console.log(answer);
 }
+
+{
+  /**
+   * 1789번 수들의 합
+   * https://zereight.tistory.com/736
+   */
+  const fs = require('fs');
+  let target = Number(fs.readFileSync('/dev/stdin').toString().trim());
+
+  let num = 1;
+
+  let sum = num;
+
+  while (sum <= target) {
+    num++;
+    sum += num;
+  }
+
+  console.log(num - 1);
+}
