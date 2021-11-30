@@ -287,3 +287,36 @@
 
   console.log(num - 1);
 }
+
+{
+  /**
+   * 4796번 캠핑
+   */
+  const fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+
+  for (let i = 0; i < input.length - 1; i++) {
+    let target = input[i].split(' ').map(Number);
+
+    let V = target[2];
+    let P = target[1];
+    let L = target[0];
+
+    let count = 0;
+
+    // V가 P보다 클 경우 L날을 다 이용할 수 있다는 의미
+    while (V > P) {
+      V = V - P;
+      count += L;
+    }
+
+    // 캠핑 이용일자가 휴가보다 크면 휴가 날짜 모두 이용해야하므로
+    if (L > V) {
+      count += V;
+    } else {
+      // 휴가 날짜가 더 크면 이용일자를 모두 이용할 수 있어서
+      count += L;
+    }
+    console.log(`Case ${i + 1}: ${count}`);
+  }
+}
