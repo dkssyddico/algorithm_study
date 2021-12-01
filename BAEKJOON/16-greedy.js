@@ -320,3 +320,86 @@
     console.log(`Case ${i + 1}: ${count}`);
   }
 }
+
+{
+  /**
+   * 1439번
+   * 문제를 너무 어렵게 생각한듯?
+   */
+  {
+    /**
+     * 틀린 풀이
+     */
+    const fs = require('fs');
+    let input = fs.readFileSync('/dev/stdin').toString().trim();
+
+    let target = input.toString();
+
+    target = target.split('');
+
+    let oneCount = 0;
+    // 0일 때 1인지 검사
+    for (let i = 0; i < target.length; i++) {
+      let num = target[i];
+      console.log(num);
+      if (num === '1') {
+        oneCount++;
+        for (let j = i + 1; j < target.length; j++) {
+          let x = target[j];
+          if (x === '0') {
+            i = j;
+            break;
+          }
+        }
+      }
+    }
+
+    // 1로 시작할 때 0으로 된 거 검사
+    let zeroCount = 0;
+
+    for (let i = 0; i < target.length; i++) {
+      let num = target[i];
+      if (num === '0') {
+        zeroCount++;
+        for (let j = i + 1; j < target.length; j++) {
+          let x = target[j];
+          if (x === '1') {
+            i = j;
+            break;
+          }
+        }
+      }
+    }
+
+    console.log(zeroCount <= oneCount ? zeroCount : oneCount);
+  }
+  {
+    /**
+     * 다른 사람 풀이 참고한 것
+     */
+    const fs = require('fs');
+    let target = fs.readFileSync('/dev/stdin').toString().trim();
+
+    let countZero = 0;
+
+    let countOne = 0;
+
+    if (target[0] === '1') {
+      countZero++;
+    } else {
+      countOne++;
+    }
+
+    for (let i = 0; i < target.length - 1; i++) {
+      if (target[i] !== target[i + 1]) {
+        if (target[i + 1] === '1') {
+          countZero++;
+        } else {
+          countOne++;
+        }
+      }
+    }
+
+    console.log(Math.min(countZero, countOne));
+  }
+}
