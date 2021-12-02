@@ -403,3 +403,19 @@
     console.log(Math.min(countZero, countOne));
   }
 }
+
+{
+  /**
+   * 2864번 5와 6의 차이
+   * 모두 5로 바꾼 경우가 최솟값, 모두 6으로 바꾼 경우가 최댓값
+   */
+
+  let input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+  input = input[0].split(' ');
+
+  let M = input.map((s) => +s.replace(/5/g, '6'));
+
+  let m = input.map((s) => +s.replace(/6/g, '5'));
+
+  console.log(m[0] + m[1], M[0] + M[1]);
+}
