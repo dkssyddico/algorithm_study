@@ -324,7 +324,6 @@ for (let i = 0; i < cases; i++) {
       dp[i - 1]
     );
   }
-
   console.log(dp[target - 1]);
 }
 
@@ -805,4 +804,26 @@ for (let i = 0; i < cases; i++) {
   }
 
   console.log(dp[target]);
+}
+
+{
+  /**
+   * 11015번 가장 큰 증가 부분 수열
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  let cases = Number(input[0]);
+  let arr = input[1].split(' ').map((v) => Number(v));
+  let dp = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    dp[i] = arr[i];
+    for (let j = 0; j < i; j++) {
+      if (arr[j] < arr[i] && dp[i] < dp[j] + arr[i]) {
+        dp[i] = dp[j] + arr[i];
+      }
+    }
+  }
+
+  console.log(Math.max(...dp));
 }
