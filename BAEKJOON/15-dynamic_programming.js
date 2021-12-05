@@ -827,3 +827,27 @@ for (let i = 0; i < cases; i++) {
 
   console.log(Math.max(...dp));
 }
+
+{
+  /**
+   * 11722번 가장 긴 감소하는 부분 수열
+   * LIS랑 똑같다. 다만 감소하는 걸 찾을 뿐.
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  let cases = Number(input[0]);
+  let arr = input[1].split(' ').map((v) => Number(v));
+  let dp = new Array(cases).fill(1);
+
+  for (let i = 1; i < arr.length; i++) {
+    let max = 0;
+    for (let j = i - 1; j >= 0; j--) {
+      if (arr[i] < arr[j] && dp[j] > max) {
+        max = dp[j];
+      }
+    }
+    dp[i] = max + 1;
+  }
+
+  console.log(Math.max(...dp));
+}
