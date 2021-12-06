@@ -851,3 +851,32 @@ for (let i = 0; i < cases; i++) {
 
   console.log(Math.max(...dp));
 }
+
+{
+  /**
+   * 1946번 신입사원
+   * 어떤 한 개의 시험을 가지고 차례대로 정렬하고
+   * 그 다음 시험 순위를 보고 더 높으면 채용할 수 있도록 짜면 된다.
+   */
+  let candidates = [
+    [3, 2],
+    [1, 4],
+    [4, 1],
+    [2, 3],
+    [5, 5],
+  ];
+
+  candidates.sort((a, b) => a[0] - b[0]);
+
+  let count = 1;
+  let tmp = candidates[0][1];
+
+  for (let i = 1; i < candidates.length; i++) {
+    if (tmp > candidates[i][1]) {
+      tmp = candidates[i][1];
+      count++;
+    }
+  }
+
+  console.log(count);
+}
