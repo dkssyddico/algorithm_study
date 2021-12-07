@@ -534,3 +534,40 @@
     console.log(result);
   }
 }
+
+{
+  /**
+   * 16953번 A -> B
+   * 오롯이 내 힘으로 푼 문제. ㅜㅜ오랜만
+   * B가 A가 될 수 있도록 하면 된다.
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split(' ');
+
+  let a = Number(input[0]);
+  let b = Number(input[1]);
+
+  /**
+   * b를 가지고 a를 구한다
+   */
+
+  let count = 0;
+  while (a < b) {
+    if (b % 2 === 0) {
+      b = b / 2;
+      count++;
+    } else {
+      let newB = b.toString().split('');
+      if (newB[newB.length - 1] === '1') {
+        newB = newB.splice(0, newB.length - 1);
+        b = Number(newB.join(''));
+        count++;
+      } else {
+        count = -1;
+        break;
+      }
+    }
+  }
+
+  console.log(a === b ? count + 1 : -1);
+}
