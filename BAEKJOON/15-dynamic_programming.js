@@ -880,3 +880,47 @@ for (let i = 0; i < cases; i++) {
 
   console.log(count);
 }
+
+{
+  /**
+   * 2437번 저울
+   * 처음엔 주어진 추를 가지고 숫자들을 만들 수 있는 경우를 생각했는데.
+   * 그리디의 대표적인 문제가 동전 거스름돈인 것을 인지하고 나서 거스름돈 구하는 방식을 응용해보자 했다.
+   * 최솟값을 구해야하므로 1부터 수를 차례로 올리고 이것을 거스름돈이라고 생각한다.
+   * 그리고 추들을 거스름돈으로 줄 수 있는 동전의 종류들이라고 가정한다.
+   * 정석(?) 거스름돈 풀이와 다른 점은 한 동전을 반복해서 쓸 수 없으므로(100원을 3개 준다던가)
+   * 한 번만 쓰고 다음 동전(추)으로 바꿔야 한다는 점이다.
+   * 차례대로 올라가는 숫자가 모든 추를 사용해서 0이 되었거나, 추를 다 사용하지 않아도 이미 주어진 숫자가 0이 되면 주어진 추들로 만들 수 있는 숫자라는 뜻이다.
+   * 음수가 나오지 않도록 주의.
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  let cases = Number(input[0]);
+  let arr = input[1]
+    .split(' ')
+    .map(Number)
+    .sort((a, b) => b - a);
+
+  // let arr = [3, 1, 6, 2, 7, 30, 1];
+  // arr.sort((a, b) => b - a);
+
+  let i = 0;
+
+  while (true) {
+    i++;
+    let target = i;
+    for (let i = 0; i < cases; i++) {
+      let num = arr[i];
+      if (target - num >= 0) {
+        target = target - num;
+      }
+      if (target === 0) {
+        break;
+      }
+    }
+    if (target > 0) {
+      console.log(i);
+      break;
+    }
+  }
+}
