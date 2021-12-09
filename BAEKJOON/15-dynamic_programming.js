@@ -924,3 +924,31 @@ for (let i = 0; i < cases; i++) {
     }
   }
 }
+
+{
+  /**
+   * 1449번 수리공 한승
+   * 이해하고 나서 보니 그렇게 어려운 문제가 아니었지만 첨엔 무슨 문젠가 했음..
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  let tapeCount = Number(input[0].split(' ')[0]);
+  let length = Number(input[0].split(' ')[1]);
+  // let length = 2;
+
+  let tapes = input[1].split(' ').map(Number);
+  tapes.sort((a, b) => a - b);
+
+  let count = 0;
+  let fix = 0;
+
+  for (let i = 0; i < tapes.length; i++) {
+    let position = tapes[i];
+    if (position > fix) {
+      count++;
+      fix = position + length - 1;
+    }
+  }
+
+  console.log(count);
+}
