@@ -571,3 +571,40 @@
 
   console.log(a === b ? count + 1 : -1);
 }
+
+{
+  /**
+   * 1543번 문서 검색
+   * 첫번째 방법: match와 정규 표현식 사용하기 -> 런타임 에러 뜸
+   * 두번째 방법: 다른 분 풀이 참조. 찾으려는 문자열의 길이만큼 맞는지 확인해서 잘라주고 카운트에 더해주는 것 반복
+   */
+  {
+    let input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    let qString = input[0];
+    let aString = input[1];
+    aString = RegExp(aString, 'gi');
+
+    console.log(qString.match(aString).length);
+  }
+  {
+    let fs = require('fs');
+    let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+    input[0] = input[0].split('');
+    let start = 0;
+    let end = input[1].length;
+    let count = 0;
+
+    while (true) {
+      if (input[0].slice(start, end).join('') === input[1]) {
+        input[0].splice(start, input[1].length);
+        count++;
+      } else {
+        start++;
+        end++;
+      }
+      if (end > input[0].length) break;
+    }
+
+    console.log(count);
+  }
+}
