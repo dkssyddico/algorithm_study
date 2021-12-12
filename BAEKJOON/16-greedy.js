@@ -608,3 +608,28 @@
     console.log(count);
   }
 }
+
+{
+  /**
+   * 1783번 병든 나이트
+   * 참고: https://ghost4551.tistory.com/20
+   */
+  let input = require('fs').readFileSync('/dev/stdin').toString().trim().split(' ');
+  let height = Number(input[0]);
+  let width = Number(input[1]);
+
+  // 이동횟수가 4번이 넘을 경우 모든 이동 방법을 다 써야함
+  // 이동횟수가 4번보다 적으면 이동 방법에 대한 제약이 없음
+
+  if (height === 1) {
+    console.log(1);
+  } else if (height === 2) {
+    console.log(Math.min(4, parseInt((width + 1) / 2)));
+  } else {
+    if (width <= 6) {
+      console.log(Math.min(4, width));
+    } else {
+      console.log(width - 2);
+    }
+  }
+}
