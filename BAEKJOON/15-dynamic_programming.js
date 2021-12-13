@@ -952,3 +952,80 @@ for (let i = 0; i < cases; i++) {
 
   console.log(count);
 }
+
+{
+  /**
+   * 11048번 이동하기
+   * 밑으로 가는게 더 좋은 거라는 걸 어떻게 알지?
+   * 거의 다 푼 문제였는데 조건이 더 붙어야 한다는 것을 몰라서 다른 사람 풀이를 참고 했다.
+   */
+  {
+    // 맞은 코드
+    let fs = require('fs');
+    let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+
+    let [N, M] = input[0].split(' ').map((e) => +e);
+
+    let maze = Array(N)
+      .fill()
+      .map((v, i) => input[i + 1].split(' ').map(Number));
+
+    let dp = Array(N)
+      .fill()
+      .map(() => Array(M).fill(0));
+
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < M; j++) {
+        let current = maze[i][j];
+        let top = i > 0 ? dp[i - 1][j] : 0;
+        let left = j > 0 ? dp[i][j - 1] : 0;
+        let corner = i > 0 && j > 0 ? dp[i - 1][j - 1] : 0;
+        dp[i][j] = current + Math.max(top, left, corner);
+      }
+    }
+
+    console.log(dp[N - 1][M - 1]);
+  }
+  {
+    /**
+     * 틀린 내 코드
+     * 위의 코드랑 비교해보면 나는 조건이 빠진 것을 알 수 있다.
+     * 그래도 대략 문제 푸는 방법을 스스로 알아냈다는 부분은 만족한다.
+     * 세 방향에서 올 수 있는데, 그 중 가장 큰 사탕 수를 취해서 현재 좌표 사탕 값과 더해주면 된다는 것.
+     */
+    let fs = require('fs');
+    let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+    // let input = '3 3\n1 0 0\n0 1 0\n0 0 1'.split('\n');
+
+    let N = Number(input[0].split(' ')[0]);
+    let M = Number(input[0].split(' ')[1]);
+
+    let maze = [];
+
+    for (let i = 1; i < input.length; i++) {
+      let arr = input[i].split(' ').map(Number);
+      maze.push(arr);
+    }
+
+    let dp = Array.from(Array(N), () => Array(M).fill(0));
+
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < M; j++) {
+        dp[i][j] = maze[i][j];
+      }
+    }
+
+    for (let i = 1; i < N; i++) {
+      for (let j = 0; j < M; j++) {
+        let current = maze[i][j];
+        if (j === 0) {
+          dp[i][j] = current + dp[i - 1][j];
+        } else {
+          dp[i][j] = current + Math.max(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]);
+        }
+      }
+    }
+
+    console.log(dp[N - 1][M - 1]);
+  }
+}
