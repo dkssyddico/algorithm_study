@@ -206,3 +206,17 @@
     console.log(count);
   }
 }
+
+{
+  /**
+   * 11721번 열 개씩 끊어 출력하기
+   * while문으로 하는 방법을 생각했었는데 이 방법이 훨씬 좋은 것 같다.
+   * 문자열 length와 10단위를 비교하는 것까지 생각해냈었음.
+   */
+  let str = require('fs').readFileSync('/dev/stdin').toString();
+  let length = str.length;
+
+  for (let i = 0; i < length; i += 10) {
+    console.log(str.slice(i, i + 10));
+  }
+}
