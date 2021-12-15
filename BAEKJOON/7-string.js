@@ -220,3 +220,55 @@
     console.log(str.slice(i, i + 10));
   }
 }
+
+{
+  /**
+   * 11718번, 11719번 그대로 출력하기 1, 2
+   */
+  let input = require('fs').readFileSync('/dev/stdin').toString();
+
+  console.log(input);
+}
+
+{
+  /**
+   * 1427번 소트 인사이드
+   */
+  let str = require('fs').readFileSync('/dev/stdin').toString();
+
+  str = str
+    .split('')
+    .sort((a, b) => b - a)
+    .join('');
+
+  console.log(str);
+}
+
+{
+  /**
+   * 10953번 A + B - 6
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  let cases = input.shift();
+  input = input.map((i) => i.split(',').map(Number));
+
+  for (let i = 0; i < cases; i++) {
+    console.log(input[i][0] + input[i][1]);
+  }
+}
+
+{
+  /**
+   * 10808번 알파벳 개수
+   */
+  let str = require('fs').readFileSync('/dev/stdin').toString().toLowerCase();
+
+  let arr = new Array(26).fill(0);
+
+  for (let x of str) {
+    arr[x.charCodeAt() - 97]++;
+  }
+
+  console.log(arr.join(' '));
+}
