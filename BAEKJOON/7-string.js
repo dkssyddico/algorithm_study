@@ -272,3 +272,29 @@
 
   console.log(arr.join(' '));
 }
+
+{
+  /**
+   * 1181번 단어 정렬
+   */
+  // let strs = 'but\ni\nwont\nhesitate\nno\nmore\nno\nmore\nit\ncannot\nwait\nim\nyours';
+
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let cases = input.shift();
+
+  let strs = input.sort((a, b) => a.length - b.length || a.localeCompare(b));
+
+  const final = new Set(strs);
+
+  console.log(Array.from(final).join('\n'));
+}
+
+{
+  /**
+   * 2743번 단어 길이 재기
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().trim();
+  console.log(input.length);
+}
