@@ -298,3 +298,51 @@
   let input = fs.readFileSync('/dev/stdin').toString().trim();
   console.log(input.length);
 }
+
+{
+  /**
+   * 1764번 듣보잡
+   * 각각 배열로 처리해서 한 배열을 sort한 다음, 다른 배열의 아이템에 있는지를 판별해서 출력하는 방법을 썼는데 시간 초과됐다.
+   */
+  {
+    // 내가 하고자 한 풀이
+    let personNotHeard = ['ohhenrie', 'charlie', 'baesangwook'].sort((a, b) => a.localeCompare(b));
+
+    let personNotSeen = ['obama', 'baesangwook', 'ohhenrie', 'clinton'];
+
+    for (let i = 0; i < personNotHeard.length; i++) {
+      let person = personNotHeard[i];
+      if (personNotSeen.includes(person)) {
+        console.log(person);
+      }
+    }
+  }
+  {
+    // 다른 사람 풀이
+    // 이진 탐색으로 푸셨다.
+    const input = require('fs').readFileSync('/dev/stdin').toString().trim().split(/\s/);
+    const n = +input[0];
+    const m = +input[1];
+    const n_arr = input.slice(2, n + 2);
+    const m_arr = input.slice(n + 2);
+
+    function binary_search(arr, name) {
+      let high = arr.length - 1;
+      let low = 0;
+      let mid;
+
+      while (low <= high) {
+        mid = Math.floor((high + low) / 2);
+        if (arr[mid] > name) high = mid - 1;
+        else if (arr[mid] < name) low = mid + 1;
+        else return true;
+      }
+      return false;
+    }
+    const [long, short] = n_arr.length > m_arr.length ? [n_arr, m_arr] : [m_arr, n_arr];
+    long.sort();
+    const dbj = short.filter((name) => binary_search(long, name));
+
+    console.log(dbj.length + '\n' + dbj.sort().join('\n'));
+  }
+}
