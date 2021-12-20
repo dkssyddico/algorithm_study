@@ -360,3 +360,27 @@
   }
   console.log(count);
 }
+
+{
+  /**
+   * 1032번
+   */
+  let strs = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+  let cases = Number(strs.shift());
+
+  // let strs = ['config.sys', 'config.inf', 'configures'];
+
+  let empty = [...strs[0]];
+
+  for (let i = 0; i < cases; i++) {
+    let str = strs[i];
+    for (let j = 0; j < str.length; j++) {
+      let a = str[j];
+      if (empty[j] !== a) {
+        empty[j] = '?';
+      }
+    }
+  }
+
+  console.log(empty.join(''));
+}
