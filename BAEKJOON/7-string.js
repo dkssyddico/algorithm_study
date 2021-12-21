@@ -384,3 +384,24 @@
 
   console.log(empty.join(''));
 }
+
+{
+  /**
+   * 1259번 팰린드롬수
+   */
+  let strs = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+  strs.pop();
+
+  for (let i = 0; i < strs.length; i++) {
+    let num = strs[i];
+    num = num.toString().split('');
+    let answer = 'yes';
+    for (let i = 0; i < Math.floor(Math.sqrt(num.length)); i++) {
+      if (num[i] !== num[num.length - i - 1]) {
+        answer = 'no';
+        break;
+      }
+    }
+    console.log(answer);
+  }
+}
