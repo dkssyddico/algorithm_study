@@ -60,6 +60,12 @@
    * 굳이 미끄러질 때를 계산할 필요가 없기 때문이다.
    */
   {
+    let nums = require('fs').readFileSync('/dev/stdin').toString().split(' ');
+    let up = nums[0];
+    let down = nums[1];
+    let goal = nums[2];
+
+    console.log(Math.ceil((goal - down) / (up - down)));
   }
 }
 
