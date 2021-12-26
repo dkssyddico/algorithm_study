@@ -405,3 +405,53 @@
     console.log(answer);
   }
 }
+
+{
+  /**
+   * 11656번 접미사 배열
+   */
+  let fs = require('fs');
+  let str = fs.readFileSync('/dev/stdin').toString().trim();
+  str = str.split('');
+
+  let arr = [];
+
+  for (let i = 0; i < str.length; i++) {
+    let w = str.slice(i);
+    arr.push(w.join(''));
+  }
+
+  arr.sort((a, b) => a.localeCompare(b)).forEach((i) => console.log(i));
+}
+
+{
+  /**
+   * 1212번 8진수 2진수
+   * parseInt를 이용해 8진법을 만들 수 있고, toString으로 특정 숫자를 2진법으로 출력할 수 있다는 것을 처음 알게 되었다.
+   * 문제 조건을 잘 봐야하는 문제.
+   * 다른 사람 풀이를 참고했다.
+   * 혼자 8진법을 10진법으로 바꾸는 코드를 작성해봤다.
+   */
+  let fs = require('fs');
+  let numbers = fs.readFileSync('/dev/stdin').toString().trim().split('');
+  let answer = '';
+  numbers.forEach((str, i) => {
+    const dex = parseInt(str, 8);
+    let binary = dex.toString(2);
+    while (i !== 0 && binary.length < 3) {
+      binary = '0' + binary;
+    }
+    answer += binary;
+  });
+
+  console.log(answer);
+
+  {
+    // 8진수를 2진수로 바꾸는 방법
+    let x = 0;
+    for (let i = 0; i < num.length; i++) {
+      let y = num[i] * Math.pow(8, num.length - i - 1);
+      x += y;
+    }
+  }
+}
