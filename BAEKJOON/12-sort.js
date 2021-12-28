@@ -71,3 +71,23 @@
 
   console.log(input.join('\n'));
 }
+
+{
+  /**
+   * 11650번 좌표 정렬하기
+   * 한 번에 모아서 출력하는게 시간 절약에 좋다!
+   */
+  const fs = require('fs');
+  const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let cases = input.shift();
+
+  let arrs = input.map((i) => i.split(' ').map(Number));
+
+  let result = '';
+
+  arrs
+    .sort((a, b) => (a[0] === b[0] ? a[1] - b[1] : a[0] - b[0]))
+    .forEach((i) => (result += `${i[0]} ${i[1]}\n`));
+
+  console.log(result);
+}
