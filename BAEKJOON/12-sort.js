@@ -91,3 +91,43 @@
 
   console.log(result);
 }
+
+{
+  /**
+   * 2309 일곱난쟁이
+   * 다른 사람 풀이를 참고해서 풀었음.
+   * 모든 난쟁이들의 키의 합을 구하고 100을 뺀다.
+   * 모든 키의 합은 일곱 난장이의 키의 합 + 2명의 합인데, 이 2명의 합을 반복문으로 찾아주면 되는 거였다.
+   * 해당하는 인덱스를 변수에 할당해주고 출력할 때 그 인덱스만 출력해주지 않으면 쉽게 해결!
+   */
+  const fs = require('fs');
+  let dwarfs = fs.readFileSync('/dev/stdin').toString().trim().split('\n').map(Number);
+
+  // let dwarfs = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+
+  dwarfs.sort((a, b) => a - b);
+
+  let sum = dwarfs.reduce((a, b) => a + b);
+
+  let minus = sum - 100;
+
+  let p1, p2;
+  for (let i = 0; i < 8; i++) {
+    for (let j = i + 1; j < 9; j++) {
+      if (dwarfs[i] + dwarfs[j] === minus) {
+        [p1, p2] = [i, j];
+        break;
+      }
+    }
+  }
+
+  let result = '';
+
+  for (let i = 0; i < dwarfs.length; i++) {
+    if (i !== p1 && i !== p2) {
+      result += `${dwarfs[i]}\n`;
+    }
+  }
+
+  console.log(result);
+}
