@@ -131,3 +131,38 @@
 
   console.log(result);
 }
+
+{
+  /**
+   * 10814번 나이 순 정렬
+   * sort 메소드에서 split을 사용하면 시간이 오래걸린다고 함.
+   */
+
+  // let arr = [
+  //   [21, 'Junkyu'],
+  //   [21, 'Dohyun'],
+  //   [20, 'Sunyoung'],
+  // ];
+
+  const fs = require('fs');
+  let arr = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let cases = arr.shift();
+
+  arr.sort((a, b) => a.split(' ')[0] - b.split(' ')[0]);
+
+  console.log(arr.join('\n'));
+
+  {
+    /**
+     * 이 코드를 하니 거의 3배의 시간이 절약됨!
+     * parseInt와 parseFloat는 문자를 분석해서 정수를 반환하는 기능이 있다고 함.
+     */
+    const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+
+    const len = input.shift();
+
+    input.sort((a, b) => parseFloat(a) - parseFloat(b));
+
+    console.log(input.join('\n'));
+  }
+}
