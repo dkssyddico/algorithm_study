@@ -166,3 +166,157 @@
     console.log(input.join('\n'));
   }
 }
+
+{
+  /**
+   * 11651번 좌표 정렬하기 2
+   * 이전에 풀었던거랑 같지만 답을 구하는 조건이 약간 다른 문제.
+   */
+
+  const fs = require('fs');
+  const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let cases = input.shift();
+
+  let arrs = input.map((i) => i.split(' ').map(Number));
+
+  let result = '';
+
+  arrs
+    .sort((a, b) => (a[1] === b[1] ? a[0] - b[0] : a[1] - b[1]))
+    .forEach((i) => (result += `${i[0]} ${i[1]}\n`));
+
+  console.log(result);
+}
+
+{
+  /**
+   * 2108 통계학
+   * 참고: https://nyang-in.tistory.com/225
+   * 평균, 범위, 중간값 구하는 거는 쉬운데 최빈값이 약간 까다롭다.
+   * 원본 숫자 배열을 오름차순으로 정리해주고 Map으로 각 숫자가 몇번 나왔는지 정리해준다
+   */
+  let fs = require('fs');
+  let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+  const N = Number(input[0]);
+  input.shift();
+  const result = [];
+  const array = new Array(8001);
+  array.fill(0);
+  for (let i = 0; i < N; i++) {
+    let index = Number(input[i]) + 4000;
+    array[index]++;
+  }
+  for (let j = 0; j < array.length; j++) {
+    if (array[j] !== 0) {
+      for (let k = 0; k < array[j]; k++) {
+        result.push(j - 4000);
+      }
+    } else {
+      continue;
+    }
+  }
+  // 산술평균 : N개의 수들의 합을 N으로 나눈 값
+  function getAverage(array) {
+    let sum = 0;
+    for (let i = 0; i < N; i++) {
+      sum += array[i];
+    }
+    return Math.round(sum / N);
+  }
+  // 중앙값 : N개의 수들을 증가하는 순서로 나열했을 경우 그 중앙에 위치하는 값
+  function getMedian(array) {
+    const mid = Math.floor(array.length / 2);
+    return array[mid];
+  }
+  // 최빈값 : N개의 수들 중 가장 많이 나타나는 값
+  function getMostValue(array) {
+    const map = new Map();
+    for (let i = 0; i < N; i++) {
+      if (!map.has(array[i])) {
+        map.set(array[i], 1);
+      } else {
+        map.set(array[i], map.get(array[i]) + 1);
+      }
+    }
+    let maxValue = 0;
+    let answer = [];
+    map.forEach((element, key) => {
+      // forEach(값, 키, map 객체 자체)
+      if (maxValue < element) {
+        maxValue = element;
+        answer = [];
+        answer.push(key);
+        // answer = key;
+      } else if (maxValue === map.get(key)) {
+        answer.push(key);
+      }
+    });
+    return answer.length !== 1 ? answer[1] : answer[0];
+  }
+  // 범위 : N개의 수들 중 최댓값과 최솟값의 차이
+  function getRange(array) {
+    return array[array.length - 1] - array[0];
+  }
+
+  console.log(getAverage(result));
+  console.log(getMedian(result));
+  console.log(getMostValue(result));
+  console.log(getRange(result));
+  {
+    /**
+     * 내가 푼 풀이
+     * 나도 로컬에서 테스트하면 예제 답안과 같게 나오는데 실제로 돌려봤을 땐 계속 틀렸습니다가 나왔다 ㅜ
+     */
+    const fs = require('fs');
+    let arr = fs.readFileSync('/dev/stdin').toString().trim().split('\n').map(Number);
+    let cases = arr.shift();
+
+    // let arr = [-1, -2, -3, -1, -2];
+
+    arr = arr.sort((a, b) => a - b);
+
+    function getAverage(arr) {
+      let sum = arr.reduce((a, b) => a + b);
+      return Math.round(sum / arr.length);
+    }
+
+    function getMiddleValue(arr) {
+      let m = Math.floor(arr.length / 2);
+      return arr[m];
+    }
+
+    function getFrequentValue(arr) {
+      let map = new Map();
+      for (let i = 0; i < arr.length; i++) {
+        let num = arr[i];
+        if (map.has(num)) {
+          map.set(num, map.has(num) + 1);
+        } else {
+          map.set(num, 1);
+        }
+      }
+
+      let max = 0;
+      let answer = [];
+      map.forEach((element, index) => {
+        if (max < element) {
+          max = element;
+          answer = [];
+          answer.push(index);
+        } else if (max === map.get(index)) {
+          answer.push(index);
+        }
+      });
+      return answer.length !== 1 ? answer[1] : answer[0];
+    }
+
+    function getRange(arr) {
+      return arr[arr.length - 1] - arr[0];
+    }
+
+    console.log(getAverage(arr));
+    console.log(getMiddleValue(arr));
+    console.log(getFrequentValue(arr));
+    console.log(getRange(arr));
+  }
+}
