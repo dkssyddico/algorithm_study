@@ -320,3 +320,15 @@
     console.log(getRange(arr));
   }
 }
+
+{
+  /**
+   * 2752번 세 수
+   */
+  const fs = require('fs');
+  let arr = fs.readFileSync('/dev/stdin').toString().trim().split(' ').map(Number);
+
+  arr = arr.sort((a, b) => a - b);
+
+  console.log(`${arr[0]} ${arr[1]} ${arr[2]}`);
+}
