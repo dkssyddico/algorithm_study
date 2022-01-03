@@ -332,3 +332,103 @@
 
   console.log(`${arr[0]} ${arr[1]} ${arr[2]}`);
 }
+
+{
+  /**
+   * 10825번 국영수 (https://www.acmicpc.net/problem/10825)
+   */
+  {
+    // 내 풀이: 실패
+    // 삼항 연산자로 풀려고 했으나 문자열 비교에 대해서는 제대로 정렬이 되지 않았음.
+    let arr = [
+      ['Junkyu', 50, 60, 100],
+      ['Sangkeun', 80, 60, 50],
+      ['Sunyoung', 80, 70, 100],
+      ['Soong', 50, 60, 90],
+      ['Haebin', 50, 60, 100],
+      ['Kangsoo', 60, 80, 100],
+      ['Donghyuk', 80, 60, 100],
+      ['Sei', 70, 70, 70],
+      ['Wonseob', 70, 70, 90],
+      ['Sanghyun', 70, 70, 80],
+      ['nsj', 80, 80, 80],
+      ['Taewhan', 50, 60, 90],
+    ];
+
+    let result = '';
+    // 이름 국 영 수
+
+    let arr2 = [2, 3, 9, 7, 8];
+
+    // 감소하는 순서
+    console.log(arr2.sort((a, b) => b - a));
+
+    arr.sort((a, b) =>
+      a[1] === b[1]
+        ? a[1] === b[1] && a[2] === b[2]
+          ? a[1] === b[1] && b[2] === a[2] && a[3] === b[3]
+            ? a[0].toLowerCase() - b[0].toLowerCase()
+            : b[3] - a[3]
+          : a[2] - b[2]
+        : b[1] - a[1]
+    );
+
+    console.log(arr);
+  }
+  const [n, ...arr] = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+
+  arr
+    .map((v) => v.split(' ').map((vv) => Number(vv) || vv))
+    .sort((a, b) => {
+      if (a[1] > b[1]) return -1;
+      else if (a[1] < b[1]) return 1;
+      else {
+        if (a[2] > b[2]) return 1;
+        else if (a[2] < b[2]) return -1;
+        else {
+          if (a[3] < b[3]) return 1;
+          else if (a[3] > b[3]) return -1;
+          else {
+            if (a[0] > b[0]) return 1;
+            else if (a[0] < b[0]) return -1;
+            else return 0;
+          }
+        }
+      }
+    });
+
+  arr.forEach((a) => (result += `${a[0]}\n`));
+
+  console.log(result);
+  {
+    // 백준 다른 사람 풀이
+    // 직관적이고 눈에 잘 들어온다..
+    const stdin = require('fs').readFileSync('/dev/stdin').toString();
+    const [N, ...input] = stdin
+      .trim()
+      .split('\n')
+      .map((x) => x.split(' ').map((v, i) => (i === 0 ? v : +v)));
+
+    input.sort((a, b) => {
+      const isEqualAllScores = a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
+      const isEqualKorEng = a[1] === b[1] && a[2] === b[2];
+      const isEqualKor = a[1] === b[1];
+      if (isEqualAllScores) {
+        return a[0] > b[0] ? 1 : -1;
+      }
+      if (isEqualKorEng) {
+        return b[3] - a[3];
+      }
+      if (isEqualKor) {
+        return a[2] - b[2];
+      }
+      return b[1] - a[1];
+    });
+
+    let answer = '';
+
+    input.forEach((x) => (answer += x[0] + '\n'));
+
+    console.log(answer);
+  }
+}
