@@ -23,7 +23,6 @@ function solution(n, arr) {
           DFS(i);
           ch[i] = 0; // 되돌아갈때 방문한 곳 체크 풀어줌
           console.log(ch);
-
           path.pop();
         }
       }
