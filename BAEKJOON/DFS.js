@@ -82,3 +82,137 @@
     console.log(cnt);
   }
 }
+
+{
+  /**
+   * 1260번 DFS와 BFS
+   * DFS는 깊이 우선 탐색으로 한 노드에서 시작한 맨 끝 노드까지 탐색하고 더 이상 갈 노드가 없다면 왔던 길을 되돌아와서 다른 가지를 찾고, 이 과정을 반복한다.
+   * BFS는 인접 노드를 먼저 찾는 방식이다.
+   * 노드가 어떤 노드와 연결되어있는지 '그래프' 배열을 만들어주고,
+   * https://cider.tistory.com/4 : 그래프 예제.
+   * DFS, BFS 특성에 따라 각각 stack, queue를 사용해 현재 어떤 노드를 탐색하고 있는지 각각 자료구조에 넣어줘야한다.
+   * 그리고 그 해당 노드를 방문했는지 여부를 확인해줄 수 있는 check or visited 배열을 만들어 true, false로 구분한다.
+   * DFS는 재귀로 실행할 수 있다.
+   */
+  {
+    // https://jaekwan.tistory.com/113 코드를 리팩토링한것.
+    let input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    const [N, M, V] = input.shift().split(' ').map(Number);
+    input = input.map((i) => i.split(' ').map(Number));
+
+    let graph = Array.from(Array(N + 1), () => Array(N + 1).fill(0));
+
+    for (let i = 0; i < M; i++) {
+      const x = input[i][0];
+      const y = input[i][1];
+
+      graph[x][y] = 1;
+      graph[y][x] = 1;
+    }
+
+    let BFS = function (node) {
+      let answer = '';
+      let visited = new Array(N + 1).fill(false);
+      visited[node] = true;
+
+      let Queue = [];
+      Queue.push(node);
+
+      while (Queue.length > 0) {
+        let cur = Number(Queue.shift());
+        answer += cur + ' ';
+        for (let next = 1; next <= N; next++) {
+          if (!visited[next] && graph[cur][next]) {
+            visited[next] = true;
+            Queue.push(next);
+          }
+        }
+      }
+      console.log(answer);
+    };
+
+    let DFS = function (node) {
+      let answer = '';
+      let visited = new Array(N + 1).fill(false, 0, N + 1);
+      let stack = [];
+
+      stack.push(node);
+
+      while (stack.length > 0) {
+        let cur = stack.pop();
+        if (!visited[cur]) {
+          visited[cur] = true;
+          answer += cur + ' ';
+          for (let next = N; next >= 1; next--) {
+            if (!visited[next] && graph[cur][next]) stack.push(next);
+          }
+        }
+      }
+      console.log(answer);
+    };
+
+    DFS(V);
+    BFS(V);
+  }
+  {
+    // 백준 다른 사람 풀이
+    const fs = require('fs');
+    const { off } = require('process');
+    const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+    const [N, M, V] = input[0].trim().split(' ').map(Number);
+    const ARR = [];
+    const visited1 = new Array(N + 1).fill(0);
+    const visited2 = new Array(N + 1).fill(0);
+
+    for (let i = 0; i <= N; i++) {
+      ARR.push([...new Array(N + 1).fill(0)]);
+    }
+
+    for (let i = 1; i <= M; i++) {
+      const [a, b] = input[i].trim().split(' ').map(Number);
+      ARR[a][b] = ARR[b][a] = 1;
+    }
+
+    const stack = [];
+    const queue = [];
+    const resultStr = [];
+
+    function dfs(idx) {
+      visited1[idx] = 1;
+
+      stack.push(idx);
+      for (let i = 1; i <= N; i++) {
+        if (!visited1[i] && ARR[idx][i] !== 0) {
+          dfs(i);
+        }
+      }
+      return;
+    }
+
+    function bfs(idx) {
+      const arr = [];
+
+      visited2[idx] = 1;
+      queue.push(idx);
+      arr.push(idx);
+
+      while (arr.length) {
+        idx = arr.shift();
+        for (let i = 1; i <= N; i++) {
+          if (!visited2[i] && ARR[idx][i] !== 0) {
+            visited2[i] = 1;
+            queue.push(i);
+            arr.push(i);
+          }
+        }
+      }
+      return;
+    }
+
+    dfs(V);
+    bfs(V);
+    resultStr.push(stack.join(' '));
+    resultStr.push(queue.join(' '));
+    console.log(resultStr.join('\n'));
+  }
+}
