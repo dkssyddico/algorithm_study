@@ -216,3 +216,52 @@
     console.log(resultStr.join('\n'));
   }
 }
+
+{
+  /**
+   * 2667번 단지 번호 붙이기
+   * 인프런에서 풀었던 섬 찾기 방식으로 푸니까 금방 풀었다.
+   * 처음의 houses 배열을 이중 for문으로 돌면서 집을 하나 찾고, DFS 재귀함수를 실행한다.
+   * 찾은 집은 방문했다고 0으로 바꿔주고, 4방향에서 집이 있는지를 찾아본다.
+   * 각 단지 내 집의 수를 카운트해주는게 어려웠는데, 다른 풀이를 보고 참고했다.
+   * 그리고 오름차순으로 출력해줘야함.
+   */
+  const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+  let n = Number(input.shift());
+
+  let houses = Array.from(Array(n), () => new Array(n));
+  for (let i = 0; i < n; i++) {
+    houses[i] = input[i].split('').map((el) => Number(el));
+  }
+
+  let answer = [];
+
+  let dx = [-1, 0, 1, 0];
+  let dy = [0, 1, 0, -1];
+
+  let count = 0;
+  function DFS(x, y) {
+    houses[x][y] = 0;
+    count++;
+    for (let k = 0; k < 4; k++) {
+      let nx = x + dx[k];
+      let ny = y + dy[k];
+      if (nx >= 0 && nx < n && ny >= 0 && ny < n && houses[nx][ny] === 1) {
+        DFS(nx, ny);
+      }
+    }
+  }
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (houses[i][j] === 1) {
+        DFS(i, j);
+        answer.push(count);
+        count = 0;
+      }
+    }
+  }
+
+  console.log(answer.length);
+  answer.sort((a, b) => a - b).forEach((a) => console.log(a));
+}
