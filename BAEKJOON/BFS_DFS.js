@@ -1,5 +1,90 @@
 {
   /**
+   * 2178번 미로 탐색(https://www.acmicpc.net/problem/2178)
+   * "너비우선탐색(Breadth First Search) 이란 루트 노드에서 시작해서 인접한 노드 를 먼저 탐색하는 방법이다. "
+   * (https://velog.io/@sukong/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B0%9C%EB%85%90-%EB%84%88%EB%B9%84%EC%9A%B0%EC%84%A0%ED%83%90%EC%83%89BFS-lp8zywtn)
+   * 4방향을 통해 1,1 부터 갈 수 있는 곳을 찾아준뒤, map 자체에 이동한 횟수를 더해주는 방식
+   */
+
+  // let map = [
+  //   [1, 0, 1, 1, 1, 1],
+  //   [1, 0, 1, 0, 1, 0],
+  //   [1, 0, 1, 0, 1, 1],
+  //   [1, 1, 1, 0, 1, 1],
+  // ];
+
+  // let coordinates = [4, 6];
+
+  const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+
+  const coordinates = input.shift().split(' ');
+
+  const map = input.map((v) => v.split('').map((x) => +x));
+
+  let dx = [-1, 0, 1, 0];
+  let dy = [0, 1, 0, -1];
+
+  let stack = [[0, 0, 0]];
+
+  while (stack.length) {
+    const [x, y, dis] = stack.shift();
+
+    for (let i = 0; i < 4; i++) {
+      const xPos = x + dx[i];
+      const yPos = y + dy[i];
+
+      if (0 <= xPos && 0 <= yPos && xPos < coordinates[1] && yPos < coordinates[0]) {
+        if (map[yPos][xPos] === 1) {
+          map[yPos][xPos] = dis + 2;
+          stack.push([xPos, yPos, dis + 1]);
+        }
+      }
+    }
+  }
+
+  console.log(map[coordinates[0] - 1][coordinates[1] - 1]);
+  {
+    /**
+     * 다른 분 풀이
+     */
+    const input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    const [h, w] = input[0].split(' ').map(Number);
+    const board = input.slice(1);
+    const dir = [
+      [0, -1],
+      [1, 0],
+      [0, 1],
+      [-1, 0],
+    ];
+    const bfs = () => {
+      const q = [[0, 0]];
+      const isVisited = Array.from(Array(h), () => Array(w).fill(0));
+      const dist = Array.from(Array(h), () => Array(w).fill(0));
+      isVisited[0][0] = 1;
+
+      while (q.length) {
+        const [x, y] = q.shift();
+
+        for (let i = 0; i < dir.length; i += 1) {
+          const [dx, dy] = dir[i];
+          const nx = x + dx,
+            ny = y + dy;
+
+          if (nx < 0 || ny < 0 || nx >= w || ny >= h || board[ny][nx] === '0' || isVisited[ny][nx])
+            continue;
+          isVisited[ny][nx] = 1;
+          dist[ny][nx] = dist[y][x] + 1;
+          q.push([nx, ny]);
+        }
+      }
+      console.log(dist[h - 1][w - 1] + 1);
+    };
+    bfs();
+  }
+}
+
+{
+  /**
    * 2606번
    */
   {
@@ -264,4 +349,167 @@
 
   console.log(answer.length);
   answer.sort((a, b) => a - b).forEach((a) => console.log(a));
+}
+
+{
+  /**
+   * 1012번 유기농 배추
+   */
+  {
+    let arr = [
+      [0, 0],
+      [1, 0],
+      [1, 1],
+      [4, 2],
+      [4, 3],
+      [4, 5],
+      [2, 4],
+      [3, 4],
+      [7, 4],
+      [8, 4],
+      [9, 4],
+      [7, 5],
+      [8, 5],
+      [9, 5],
+      [7, 6],
+      [8, 6],
+      [9, 6],
+    ];
+    // DFS로 풀었을 때
+    let width = 10;
+    let height = 8;
+    let nums = 17;
+    let answer = 0;
+
+    // 이거 틀린거같음 width, height가 반대로 들어가야함
+    let veggies = Array.from(Array(width), () => Array(height).fill(0));
+
+    // 야채 그래프 만들어주기
+    for (let i = 0; i < arr.length; i++) {
+      let location = arr[i];
+      let x = location[0];
+      let y = location[1];
+      veggies[x][y] = 1;
+    }
+
+    let dx = [-1, 0, 1, 0];
+    let dy = [0, 1, 0, -1];
+
+    function DFS(x, y) {
+      veggies[x][y] = 0; // 찾은 배추는 0 처리
+      for (let i = 0; i < 4; i++) {
+        let posX = x + dx[i];
+        let posY = y + dy[i];
+        if (posX >= 0 && posX < width && posY >= 0 && posY < height && veggies[posX][posY] === 1) {
+          DFS(posX, posY);
+        }
+      }
+    }
+
+    // 야채 찾기
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < height; j++) {
+        if (veggies[i][j] === 1) {
+          answer++;
+          DFS(i, j);
+        }
+      }
+    }
+
+    console.log(answer);
+  }
+  {
+    /**
+     * https://onelight-stay.tistory.com/362 이 분 풀이 참고
+     * BFS를 더 연습해야겠다.
+     */
+    const readline = require('readline');
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    let problemCount = 0; //문제 개수
+    let arrInfo = []; // 가로세로와 배추정보
+    let inputIndex = 0; // input안 위치 설정
+    let untilIndex = 0; // 고정되어야 하는 인덱스
+    let input = [];
+    let graph = [];
+    let visited = [];
+    let result = [];
+    let count = 0;
+    rl.on('line', function (line) {
+      if (problemCount === 0) problemCount = Number(line.toString());
+      else if (line.toString().split(' ').length === 3) {
+        arrInfo.push(
+          line
+            .toString()
+            .split(' ')
+            .map((el) => Number(el))
+        );
+      } else {
+        input.push(
+          line
+            .toString()
+            .split(' ')
+            .map((el) => Number(el))
+        );
+      }
+    }).on('close', function () {
+      for (let i = 0; i < problemCount; i++) {
+        count = 0;
+        solution(arrInfo[i]);
+      }
+      console.log(result.join('\n'));
+      process.exit();
+    });
+
+    let solution = (problem) => {
+      graph = []; // 초기화
+      visited = []; // 초기화
+      let width = problem[0];
+      let height = problem[1];
+      let veggies = problem[2];
+      graph = Array.from(Array(height), () => Array(width).fill(0));
+      visited = Array.from(Array(height), () => Array(width).fill(false));
+      for (let i = inputIndex; i < inputIndex + problem[2]; i++) {
+        graph[input[i][1]][input[i][0]] = 1;
+      }
+
+      let BFS = (x, y) => {
+        let dy = [0, 0, -1, 1];
+        let dx = [-1, 1, 0, 0];
+        let queue = [];
+
+        visited[x][y] = true;
+        queue.push([x, y]);
+
+        while (queue.length) {
+          let [mx, my] = queue.shift();
+
+          for (let i = 0; i < 4; i++) {
+            let xx = mx + dx[i];
+            let yy = my + dy[i];
+
+            if (0 <= xx && xx < height && 0 <= yy && yy < width) {
+              if (graph[xx][yy] === 1 && visited[xx][yy] === false) {
+                visited[xx][yy] = true;
+                queue.push([xx, yy]);
+              }
+            }
+          }
+        }
+        return;
+      };
+      for (let i = untilIndex; i < untilIndex + veggies; i++) {
+        if (visited[input[i][1]][input[i][0]] === false) {
+          BFS(input[i][1], input[i][0]);
+          count++;
+        }
+        inputIndex++;
+      }
+      untilIndex = inputIndex;
+      result.push(count);
+      return;
+    };
+  }
 }
