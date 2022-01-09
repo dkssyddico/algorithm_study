@@ -513,3 +513,261 @@
     };
   }
 }
+
+{
+  /**
+   * 4963번 섬의 갯수
+   * https://kscodebase.tistory.com/399 참고
+   */
+  const readline = require('readline');
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  let input = [];
+  let N = 0;
+  let M = 0;
+  rl.on('line', (line) => {
+    if (!N) {
+      if (line === '0 0') {
+        process.exit();
+      }
+      [M, N] = line.split(' ').map(Number);
+    } else {
+      input.push(line);
+      if (input.length === N) {
+        main();
+        N = 0;
+        input = [];
+      }
+    }
+  });
+
+  const main = () => {
+    const graph = [];
+    const visited = [];
+
+    for (let i = 0; i < N; i++) {
+      graph[i] = input[i].split(' ').map(Number);
+      visited[i] = new Array(M).fill(false);
+    }
+
+    const bfs = (yPos, xPos) => {
+      const xMove = [0, 0, -1, 1, -1, -1, 1, 1];
+      const yMove = [1, -1, 0, 0, 1, -1, 1, -1];
+      const queue = [];
+      queue.push({ yPos: yPos, xPos: xPos });
+      visited[yPos][xPos] = true;
+
+      while (queue.length) {
+        const { yPos, xPos } = queue.shift();
+        for (let i = 0; i < 8; i++) {
+          const nextY = yPos + yMove[i];
+          const nextX = xPos + xMove[i];
+          if (nextY >= 0 && nextY < N && nextX >= 0 && nextX < M) {
+            if (!visited[nextY][nextX] && graph[nextY][nextX]) {
+              visited[nextY][nextX] = true;
+              queue.push({ yPos: nextY, xPos: nextX });
+            }
+          }
+        }
+      }
+    };
+
+    let count = 0;
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < M; j++) {
+        if (!visited[i][j] && graph[i][j]) {
+          count++;
+          bfs(i, j);
+        }
+      }
+    }
+    console.log(count);
+  };
+}
+
+{
+  /**
+   * 10026 적록색약
+   * 내 풀이는 코드를 재활용하지 않아서 좋은 코드가 아니다 ㅜ 로컬에서 하면 답은 또 나왔다.
+   */
+  {
+    // 내풀이
+    // let input = '5\nRRRBB\nGGBBB\nBBBRR\nBBRRR\nRRRRR';
+    let input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    // input = input.split('\n');
+    // RG가 같음, B가 다른거, 적록색약이 보는거 아닌 사람이 보는거 [4,3]
+    let cases = Number(input.shift());
+
+    let map = input.map((i) => i.split(''));
+    let map2 = input.map((i) => i.split(''));
+    let visited = Array.from(Array(cases), () => Array(5).fill(false));
+    let visited2 = Array.from(Array(cases), () => Array(5).fill(false));
+
+    let result = [];
+    let count = 0;
+    let count2 = 0;
+
+    const BFS = (x, y, color) => {
+      let dy = [0, 0, -1, 1];
+      let dx = [-1, 1, 0, 0];
+      let queue = [];
+      visited[x][y] = true;
+      map[x][y] = 'V';
+      queue.push([x, y]);
+      while (queue.length) {
+        let [x, y] = queue.shift();
+        for (let i = 0; i < 4; i++) {
+          let newX = x + dx[i];
+          let newY = y + dy[i];
+          if (newX >= 0 && newX < cases && newY >= 0 && newY < cases) {
+            if (visited[newX][newY] === false && map[newX][newY] === color) {
+              map[newX][newY] = 'V';
+              visited[newX][newY] = true;
+              queue.push([newX, newY]);
+            }
+          }
+        }
+      }
+      return;
+    };
+
+    for (let i = 0; i < cases; i++) {
+      for (let j = 0; j < cases; j++) {
+        if (map[i][j] === 'R') {
+          BFS(i, j, 'R');
+          count++;
+        } else if (map[i][j] === 'B') {
+          BFS(i, j, 'B');
+          count++;
+        } else if (map[i][j] === 'G') {
+          BFS(i, j, 'G');
+          count++;
+        }
+      }
+    }
+
+    result.push(count);
+
+    const BFS2 = (x, y, color) => {
+      let dy = [0, 0, -1, 1];
+      let dx = [-1, 1, 0, 0];
+      let queue = [];
+      visited2[x][y] = true;
+      map2[x][y] = 'V';
+      queue.push([x, y]);
+      while (queue.length) {
+        let [x, y] = queue.shift();
+        for (let i = 0; i < 4; i++) {
+          let newX = x + dx[i];
+          let newY = y + dy[i];
+          if (newX >= 0 && newX < cases && newY >= 0 && newY < cases) {
+            if (visited2[newX][newY] === false) {
+              if (color === 'R') {
+                if (map2[newX][newY] === 'R' || map2[newX][newY] === 'G') {
+                  map2[newX][newY] = 'V';
+                  visited2[newX][newY] = true;
+                  queue.push([newX, newY]);
+                }
+              } else if (color === 'B' && map2[newX][newY] === 'B') {
+                map2[newX][newY] = 'V';
+                visited2[newX][newY] = true;
+                queue.push([newX, newY]);
+              }
+            }
+          }
+        }
+      }
+      return;
+    };
+
+    for (let i = 0; i < cases; i++) {
+      for (let j = 0; j < cases; j++) {
+        if (map2[i][j] === 'R' || map2[i][j] === 'G') {
+          BFS2(i, j, 'R');
+          count2++;
+        } else if (map2[i][j] === 'B') {
+          BFS2(i, j, 'B');
+          count2++;
+        }
+      }
+    }
+
+    result.push(count2);
+
+    console.log(result.join(' '));
+  }
+
+  {
+    // 다른 사람 풀이인데 리팩토링하면 더 짧은 코드 쓸 수 있을 듯
+    let input = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+    let n = Number(input.shift());
+    let arr = input.map((i) => i.split(''));
+    let cnt_able = (cnt_disable = 0);
+
+    let check = Array.from(Array(n), () => Array(n).fill(0));
+
+    function bfs(x, y) {
+      let queue = [];
+      queue.push([x, y]);
+      check[x][y] = 1;
+      let dx = [0, 0, 1, -1];
+      let dy = [1, -1, 0, 0];
+      while (queue.length) {
+        let len = queue.length;
+        for (let i = 0; i < len; i++) {
+          let x = queue.shift();
+          for (let i = 0; i < 4; i++) {
+            let nx = x[0] + dx[i];
+            let ny = x[1] + dy[i];
+            if (
+              nx >= 0 &&
+              nx < n &&
+              ny >= 0 &&
+              ny < n &&
+              !check[nx][ny] &&
+              arr[x[0]][x[1]] === arr[nx][ny]
+            ) {
+              check[nx][ny] = 1;
+              queue.push([nx, ny]);
+            }
+          }
+        }
+      }
+    }
+    // 적록색약 아닌 경우 bfs
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (!check[i][j]) {
+          bfs(i, j);
+          cnt_able++;
+        }
+      }
+    }
+    // 적록색약인 경우 빨강,초록 색깔통합시켜주기
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (arr[i][j] === 'R') arr[i][j] = 'G';
+      }
+    }
+    // check 배열 초기화
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        check[i][j] = 0;
+      }
+    }
+    // 적록색약인 경우 bfs
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (!check[i][j]) {
+          bfs(i, j);
+          cnt_disable++;
+        }
+      }
+    }
+    console.log(cnt_able, cnt_disable);
+  }
+}
