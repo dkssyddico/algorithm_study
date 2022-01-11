@@ -771,3 +771,91 @@
     console.log(cnt_able, cnt_disable);
   }
 }
+
+{
+  /**
+   * 7576 토마토
+   * 다른 분들 풀이에 의존 ㅜㅜ
+   */
+  {
+    const readline = require('readline');
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    let input = [];
+    let arrNum = '';
+    let graph = [];
+    let visited = [];
+    let dx = [0, 0, -1, 1];
+    let dy = [-1, 1, 0, 0];
+    let toalCount = 0; // 모든 칸의 개수
+    let currCount = 0; // 방문한 칸의 개수
+    let tomatoCount = []; // 익은 토마토 위치
+    let minDay = 1;
+    let index = 0;
+    rl.on('line', function (line) {
+      if (!arrNum) arrNum = line.toString();
+      else input.push(line.toString());
+    }).on('close', function () {
+      arrNum = arrNum.split(' ').map((el) => Number(el));
+      graph = input.map((el) => el.split(' ').map((el) => Number(el)));
+      visited = Array.from(Array(arrNum[1]), () => Array(arrNum[0]).fill(false));
+      toalCount = arrNum[0] * arrNum[1];
+      graph.forEach((el1, idx1) =>
+        el1.forEach((el2, idx2) => {
+          if (el2 === 1) {
+            visited[idx1][idx2] = true;
+            currCount++;
+            tomatoCount.push([idx1, idx2]);
+          }
+        })
+      );
+
+      BFS();
+      if (currCount < toalCount) {
+        let result = findFalse();
+        if (result === true) console.log(minDay - 1);
+        else console.log(-1);
+      } else console.log(minDay - 1);
+      process.exit();
+    });
+
+    let BFS = () => {
+      while (true) {
+        let shiftQ = tomatoCount[index++];
+        if (!shiftQ) break;
+        let [x, y] = [shiftQ[0], shiftQ[1]];
+        for (let i = 0; i < 4; i++) {
+          let nx = x + dx[i];
+          let ny = y + dy[i];
+          // 방문한 적이 없고 0이 아니라면
+          if (0 <= nx && nx < arrNum[1] && 0 <= ny && ny < arrNum[0]) {
+            if (visited[nx][ny] === false) {
+              if (graph[nx][ny] === 0) {
+                tomatoCount.push([nx, ny]);
+                graph[nx][ny] = graph[x][y] + 1;
+                if (graph[nx][ny] > minDay) minDay = graph[nx][ny];
+              }
+              currCount++;
+              visited[nx][ny] = true;
+            }
+          }
+        }
+      }
+      return;
+    };
+
+    let findFalse = () => {
+      let torf = true;
+      for (let i = 0; i < arrNum[1]; i++) {
+        for (let j = 0; j < arrNum[0]; j++) {
+          if (!visited[i][j] && graph[i][j] === 0) {
+            return false;
+          }
+        }
+      }
+      return torf;
+    };
+  }
+}
