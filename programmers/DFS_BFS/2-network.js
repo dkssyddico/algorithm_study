@@ -24,4 +24,5 @@ for (let i = 0; i < computers.length; i++) {
     answer++;
   }
 }
+
 return answer;
