@@ -277,3 +277,4 @@
 | 22.01.15 | 프로그래머스          | DFS & BFS                                         | 🎉 Done 🎉        |
 | 22.01.16 | 프로그래머스          | DFS & BFS                                         | Incomplete        |
 | 22.01.17 | 프로그래머스          | DFS & BFS                                         | 🎉 Done 🎉        |
+| 22.02.03 | 인프런 복습          | brute force           | 🎉 Done 🎉        |
