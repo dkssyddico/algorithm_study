@@ -24,3 +24,42 @@
 
   console.log(answer);
 }
+
+{
+  /**
+   * 뒤집은 소수
+   */
+  let nums = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+  let answer = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (isPrime(reversedNum(num))) {
+      answer.push(reversedNum(num));
+    }
+  }
+
+  function reversedNum(num) {
+    let number = 0;
+    while (num) {
+      let left = num % 10;
+      number = number * 10 + left;
+      num = parseInt(num / 10);
+    }
+    return number;
+  }
+
+  function isPrime(num) {
+    if (num === 1) {
+      return false;
+    }
+    for (let i = 2; i < Math.floor(Math.sqrt(num)); i++) {
+      if (num % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  console.log(answer);
+}
