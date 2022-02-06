@@ -106,3 +106,46 @@
 
   console.log(answer);
 }
+
+{
+  /**
+   * 졸업 선물
+   * 선물과 배송비를 합쳐서 가격이 저렴한 순으로 정렬하기.
+   * 선물 하나씩 50% 할인을 적용해서 답을 구해보기.
+   * 다시 푸는 건데도 생각이 안나서 이전 거 참고..
+   * 나는 하나만 할인 해주고 나머지 다 더해주는 식으로 해서 답이 절대 안나왔었다ㅠ(이중 for문)
+   */
+
+  let students = 5;
+  let budget = 28;
+
+  let presents = [
+    [6, 6],
+    [2, 2],
+    [4, 3],
+    [4, 5],
+    [10, 3],
+  ];
+
+  let answer = 0;
+
+  presents = presents.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+
+  for (let i = 0; i < presents.length; i++) {
+    let money = budget - (presents[i][0] / 2 + presents[i][1]);
+    let counts = 1;
+    for (let j = 0; i < presents.length; j++) {
+      let present = presents[j];
+      if (i !== j && present[0] + present[1] > money) {
+        break;
+      }
+      if (i !== j && present[0] + present[1] <= money) {
+        money -= present[0] + present[1];
+        counts += 1;
+      }
+    }
+    answer = Math.max(answer, counts);
+  }
+
+  console.log(answer);
+}
