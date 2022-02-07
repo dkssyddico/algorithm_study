@@ -149,3 +149,62 @@
 
   console.log(answer);
 }
+
+{
+  /**
+   * K번째 수
+   * 처음에 Set를 가지고 중복 제거하면 되겠다 했는데
+   * Array.from을 가지고 Set를 배열로 만들 수 있다는 걸 인지하지 못했음.
+   * 그래서 array.includes를 통해 중복 제거하려고 했음.
+   */
+  let target = 3;
+  let nums = [13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+  let numCounts = 10;
+
+  let sumArr = [];
+
+  for (let i = 0; i < numCounts; i++) {
+    let a = nums[i];
+    for (let j = i + 1; j < numCounts; j++) {
+      let b = nums[j];
+      for (let k = j + 1; k < numCounts; k++) {
+        let c = nums[k];
+        let sum = a + b + c;
+        if (sumArr.includes(sum)) {
+          continue;
+        } else {
+          sumArr.push(sum);
+        }
+      }
+    }
+  }
+
+  sumArr = sumArr.sort((a, b) => b - a);
+
+  console.log(sumArr[target - 1]);
+
+  {
+    // Set로 푸는 방법
+    let target = 3;
+    let nums = [13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+    let numCounts = 10;
+
+    let sumArr = new Set();
+
+    for (let i = 0; i < numCounts; i++) {
+      let a = nums[i];
+      for (let j = i + 1; j < numCounts; j++) {
+        let b = nums[j];
+        for (let k = j + 1; k < numCounts; k++) {
+          let c = nums[k];
+          let sum = a + b + c;
+          sumArr.add(sum);
+        }
+      }
+    }
+
+    sumArr = Array.from(sumArr).sort((a, b) => b - a);
+
+    console.log(sumArr);
+  }
+}
