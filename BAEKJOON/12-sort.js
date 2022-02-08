@@ -432,3 +432,52 @@
     console.log(answer);
   }
 }
+
+{
+  /**
+   * 10815번 숫자 카드
+   * 이분 검색을 하는 거라 대체로 쉽게 풀었다! 내 기억력 만세 ㅎㅎ
+   */
+  // let counts = 5;
+  // let cardArr = [6, 3, 2, 10, -10];
+  // let total = 8;
+  // let cardArr2 = [10, 9, -5, 2, 3, 4, 5, -10];
+  const fs = require('fs');
+  const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let counts = Number(input[0]);
+  let cardArr = input[1].split(' ').map(Number);
+  let total = Number(input[2]);
+  let cardArr2 = input[3].split(' ').map(Number);
+
+  cardArr = cardArr.sort((a, b) => a - b);
+
+  for (let i = 0; i < total; i++) {
+    let card = cardArr2[i];
+    let result = hasCard(card);
+    if (result) {
+      cardArr2[i] = 1;
+    } else {
+      cardArr2[i] = 0;
+    }
+  }
+
+  function hasCard(card) {
+    let result = false;
+    let left = 0;
+    let right = cardArr.length - 1;
+    while (left <= right) {
+      let middle = Math.floor((left + right) / 2);
+      if (cardArr[middle] === card) {
+        result = true;
+        break;
+      } else if (cardArr[middle] < card) {
+        left = middle + 1;
+      } else if (cardArr[middle] > card) {
+        right = middle - 1;
+      }
+    }
+    return result;
+  }
+
+  console.log(cardArr2.join(' '));
+}
