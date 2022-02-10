@@ -481,3 +481,32 @@
 
   console.log(cardArr2.join(' '));
 }
+
+{
+  // 11004번 K번째 수
+  const fs = require('fs');
+  const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  const count = Number(input[0].split(' ')[0]);
+  const K = Number(input[0].split(' ')[1]);
+  const arr = input[1]
+    .split(' ')
+    .map(Number)
+    .sort((a, b) => a - b);
+
+  console.log(arr[K - 1]);
+}
+
+{
+  // 11728번 배열 합치기
+  const fs = require('fs');
+  const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+  let a = input[1].split(' ').map(Number);
+  let b = input[2].split(' ').map(Number);
+
+  console.log(
+    a
+      .concat(b)
+      .sort((a, b) => a - b)
+      .join(' ')
+  );
+}
