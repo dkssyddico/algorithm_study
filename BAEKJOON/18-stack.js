@@ -247,3 +247,108 @@
     console.log(answer);
   }
 }
+
+{
+  /**
+   * 10799번 쇠막대기
+   * 왜 자꾸 풀이가 틀렸다하는지 뜯어보니 조건문에 bar.length를 주면 안된다.
+   */
+  {
+    // 틀렸다고 나온 풀이. 로컬에서는 답이 나오긴 한다.
+    // let bar = '()(((()())(())()))(())'.split('');
+    const fs = require('fs');
+    let bar = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+
+    bar = input[0].split('');
+    let stack = [];
+    let answer = 0;
+
+    for (let i = 0; i < bar.length; i++) {
+      if (bar[i] === '(') stack.push(bar[i]);
+      else {
+        stack.pop();
+        if (bar[i - 1] === '(') {
+          answer += stack.length;
+        } else {
+          answer += 1;
+        }
+      }
+    }
+
+    console.log(answer);
+  }
+  {
+    // 성공한 풀이
+    let fs = require('fs');
+    let input = fs.readFileSync('/dev/stdin').toString().trim().split('');
+    let stack = [];
+    let answer = 0;
+    for (let i in input) {
+      if (input[i] === '(') {
+        stack.push(input[i]);
+      } else {
+        if (input[i - 1] === '(') {
+          stack.pop();
+          answer += stack.length;
+        } else {
+          stack.pop();
+          answer++;
+        }
+      }
+    }
+    console.log(answer);
+  }
+}
+
+{
+  /**
+   * 17298번 오큰수
+   * https://www.acmicpc.net/problem/17298
+   * 이중 for문을 써서 메모리 초과가 난듯해서 다른 풀이를 찾아봤다.
+   */
+  {
+    let input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+    let count = +input[0];
+    let num = input[1].split(' ').map(Number);
+
+    let answer = '';
+
+    for (let i = 0; i < count; i++) {
+      let target = num[i];
+      let stack = [];
+      for (let j = i + 1; j < count; j++) {
+        let subTarget = num[j];
+        if (subTarget > target) {
+          stack.push(subTarget);
+        }
+      }
+      if (stack.length) {
+        answer += `${stack[0]} `;
+      } else {
+        answer += '-1 ';
+      }
+    }
+
+    console.log(answer);
+  }
+  {
+    // https://leylaoriduck.tistory.com/493
+
+    let fs = require('fs');
+    let input = fs.readFileSync('/dev/stdin').toString().split('\n');
+    let cases = Number(input[0]);
+    let num = input[1].split(' ').map(Number);
+    let stack = [];
+    for (let i = 0; i < cases; i++) {
+      while (stack.length && num[i] > num[stack[stack.length - 1]]) {
+        num[stack.pop()] = num[i];
+      }
+      stack.push(i);
+    }
+
+    while (stack.length) {
+      num[stack.pop()] = -1;
+    }
+    console.log(num.join(' ').trim());
+  }
+}
