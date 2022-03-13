@@ -9,4 +9,18 @@
 예를 들어, 15년은 15 15 15로 나타낼 수 있다. 하지만, 1년이 지나서 16년이 되면 16 16 16이 아니라 1 16 16이 된다. 이유는 1 ≤ E ≤ 15 라서 범위를 넘어가기 때문이다.
 
 E, S, M이 주어졌고, 1년이 준규가 사는 나라에서 1 1 1일때, 준규가 사는 나라에서 E S M이 우리가 알고 있는 연도로 몇 년인지 구하는 프로그램을 작성하시오.
+
+풀이를 들고 왔고 대충 이해까지 갔는데 js로는 메모리 초과가 나서 실패한다.
  */
+
+let fs = require('fs');
+let [E, S, M] = fs.readFileSync('/dev/stdin').toString().trim().split(' ').map(Number);
+let count = 1;
+while (true) {
+  if ((count - E) % 15 === 0 && (count - S) % 28 === 0 && (count - M) % 19 === 0) {
+    console.log(count);
+    process.exit();
+  }
+  count++;
+}
+console.log(count);
