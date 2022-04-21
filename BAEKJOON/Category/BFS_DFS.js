@@ -789,7 +789,7 @@
     let visited = [];
     let dx = [0, 0, -1, 1];
     let dy = [-1, 1, 0, 0];
-    let toalCount = 0; // 모든 칸의 개수
+    let totalCount = 0; // 모든 칸의 개수
     let currCount = 0; // 방문한 칸의 개수
     let tomatoCount = []; // 익은 토마토 위치
     let minDay = 1;
@@ -801,7 +801,7 @@
       arrNum = arrNum.split(' ').map((el) => Number(el));
       graph = input.map((el) => el.split(' ').map((el) => Number(el)));
       visited = Array.from(Array(arrNum[1]), () => Array(arrNum[0]).fill(false));
-      toalCount = arrNum[0] * arrNum[1];
+      totalCount = arrNum[0] * arrNum[1];
       graph.forEach((el1, idx1) =>
         el1.forEach((el2, idx2) => {
           if (el2 === 1) {
@@ -813,7 +813,7 @@
       );
 
       BFS();
-      if (currCount < toalCount) {
+      if (currCount < totalCount) {
         let result = findFalse();
         if (result === true) console.log(minDay - 1);
         else console.log(-1);
