@@ -113,7 +113,7 @@
   let [N, K] = require('fs').readFileSync('/dev/stdin').toString().trim().split(' ').map(Number);
 
   function BFS(current) {
-    let dist = Array.from({ length: 100001 }, () => 0);
+    let dist = Array.from({ length: 100001 }, () => -1);
     let queue = [];
     dist[current] = 0;
     queue.push(current);
