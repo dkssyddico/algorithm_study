@@ -144,3 +144,29 @@
   let b = BigInt(input1);
   console.log((a + b).toString());
 }
+
+{
+  /**
+   * 1929 소수 구하기
+   */
+  let minNum = 3;
+  let maxNum = 16;
+  let ch = Array.from({ length: maxNum + 1 }, () => 0);
+  ch[0] = 1;
+  ch[1] = 1;
+
+  for (let i = 0; i <= parseInt(Math.sqrt(maxNum)); i++) {
+    if (ch[i] === 0) {
+      for (let j = i * i; j <= maxNum; j += i) {
+        console.log(i, j);
+        ch[j] = 1;
+      }
+    }
+  }
+
+  for (let k = minNum; k <= maxNum; k++) {
+    if (ch[k] === 0) {
+      // console.log(k);
+    }
+  }
+}
