@@ -1,5 +1,6 @@
 /**
  * 1120 문자열: https://www.acmicpc.net/problem/1120
+ * b 문자 차례로 비교하는 방식.
  */
 
 let fs = require('fs');
